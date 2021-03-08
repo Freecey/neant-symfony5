@@ -81,4 +81,22 @@ class ArticleController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/articles/{id}-{slug}", name="article.show", requirements={"slug": "[a-z0-9\-]*" })
+     * @return Response
+     */
+    public function show(Article $article,string $slug): Response
+    {
+        if ($article->getSlug() !== $slug){
+            return $this->redirectToRoute('article.show', [
+                'id' => $article->getId(),
+                'slug' => $article->getSlug()
+            ], 301);
+        }
+        return $this->render('article/show.html.twig',[
+            'article' => $article,
+            'current_menu' => 'articles'
+        ]);
+    }
+
 }

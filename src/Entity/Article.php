@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Cocur\Slugify\Slugify;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
@@ -80,6 +81,11 @@ class Article
         return $this;
     }
 
+    public function getSlug(): string
+    {
+        return (new Slugify())->slugify($this->title);
+    }
+
     public function getContent(): ?string
     {
         return $this->content;
@@ -138,6 +144,11 @@ class Article
         $this->category = $category;
 
         return $this;
+    }
+
+    public function getCategoryType(): string
+    {
+        return self::CATEGORY[$this->category];
     }
 
     public function getIntro(): ?string

@@ -1,0 +1,30 @@
+{%  extends 'base.html.twig' %}
+
+{% block title 'Manage Article Neant.be'%}
+
+{%  block body %}
+    <div class="container mx-auto">
+        <h1 class="text-3xl my-5 text-center">Manage Articles</h1>
+
+        <table class="table-fixed w-full">
+            <thead>
+                <tr class="bg-blue-900">
+                    <th class="w-4/6 border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">Title</th>
+                    <th class="w-1/6 border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">Date</th>
+                    <th class="w-1/6 border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for article in articles %}
+            <tr>
+                <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">{{ article.title }}</td>
+                <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium text-center">{{ article.dateCreation|date("m/d/Y") }}</td>
+                <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium text-center">
+                    <a href="{{ path('admin.article.edit', {id: article.id}) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Edit</a>
+                </td>
+            </tr>
+            {%  endfor %}
+            </tbody>
+        </table>
+    </div>
+{%  endblock %}

@@ -18,7 +18,8 @@
     <body class="bg-indigo-900 text-yellow-100 flex flex-col h-full">
     <!-- This example requires Tailwind CSS v2.0+ -->
     <nav class="bg-gray-800">
-        <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+        <div class="container mx-auto">
+{#            max-w-7xl mx-auto px-2 sm:px-6 lg:px-8#}
             <div class="relative flex items-center justify-between h-16">
                 <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
                     <!-- Mobile menu button-->
@@ -58,11 +59,11 @@
                             {% set activeMenuMobile                            = 'bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium'  %}
                             {% set inactiveMenuMobile = 'text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium' %}
 
-                            <a href="{{ path('home') }}" class="{% if current_menu == 'home' %} {{ activeMenu }}  {% else %} {{ inactiveMenu}} {% endif %}">Home</a>
-                            <a href="{{ path('article.index') }}" class="{% if current_menu == 'articles' %} {{ activeMenu }}  {% else %} {{ inactiveMenu}} {% endif %}">Articles</a>
+                            <a href="{{ path('home') }}" class="{% if current_menu is defined and current_menu == 'home' %} {{ activeMenu }}  {% else %} {{ inactiveMenu}} {% endif %}">Home</a>
+                            <a href="{{ path('article.index') }}" class="{% if current_menu is defined and current_menu == 'articles' %} {{ activeMenu }}  {% else %} {{ inactiveMenu}} {% endif %}">Articles</a>
                             <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Tutorials</a>
-                            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Projects</a>
-                            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Team</a>
+{#                            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Projects</a>#}
+                            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
                         </div>
                     </div>
                 </div>
@@ -75,15 +76,15 @@
         <div class="hidden" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1">
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                <a href="{{ path('home') }}" class="{% if current_menu == 'home' %} {{ activeMenuMobile }}  {% else %} {{ inactiveMenuMobile }} {% endif %}">Home</a>
-                <a href="{{ path('article.index') }}" class="{% if current_menu == 'articles' %} {{ activeMenuMobile }}  {% else %} {{ inactiveMenuMobile }} {% endif %}">Articles</a>
+                <a href="{{ path('home') }}" class="{% if current_menu is defined and  current_menu == 'home' %} {{ activeMenuMobile }}  {% else %} {{ inactiveMenuMobile }} {% endif %}">Home</a>
+                <a href="{{ path('article.index') }}" class="{% if current_menu is defined and  current_menu == 'articles' %} {{ activeMenuMobile }}  {% else %} {{ inactiveMenuMobile }} {% endif %}">Articles</a>
                 <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Tutorials</a>
-                <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Projects</a>
-                <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Team</a>
+{#                <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Projects</a>#}
+                <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</a>
             </div>
         </div>
     </nav>
-
+        {% block prebody %}{% endblock %}
     <main id='content' class='flex-1 p-8'>
         {% block body %}{% endblock %}
     </main>
@@ -99,7 +100,7 @@
 
 {#    </footer>#}
     <footer class='bg-gray-800 w-full text-center text-gray-400 p-4'>
-        Made with ☻ by FreeCey
+        Made with 😃 by Cedric AUDRIT
     </footer>
 
     <script>

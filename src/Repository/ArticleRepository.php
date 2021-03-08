@@ -19,6 +19,50 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
+    /**
+     * @return Article[]
+     */
+    public function findCatWindows(): array
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.category = 0')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return Article[]
+     */
+    public function findCatLinux(): array
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.category = 1')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return Article[]
+     */
+    public function findCatOther() :array
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.category = 2')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return Article[]
+     */
+    public function find5Latest() :array
+    {
+        return $this->createQueryBuilder('a')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Article[] Returns an array of Article objects
     //  */

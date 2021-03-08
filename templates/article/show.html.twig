@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title article.title %}
+
+{% block body %}
+    <div class="container mx-auto">
+        <h1 class="my-5 text-3xl text-yellow-500">{{ article.title }}</h1>
+        <div class="text-sm grid grid-cols-12 w-full my-5">
+            <div class="col-start-1 col-end-7 text-gray-400 leading-none">
+                {{ article.categoryType }}
+            </div>
+            <div class="col-end-13 col-span-6 text-right text-gray-400">
+                by {{ article.author }} --
+                {{ article.dateCreation|date("m/d/Y") }}
+            </div>
+        </div>
+        <div>
+        {{ article.content | raw }}
+        </div>
+
+    </div>
+{% endblock %}
+

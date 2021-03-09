@@ -2,6 +2,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Article;
+use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,10 +33,15 @@ class AdminArticleController extends AbstractController
     /**
      * @Route("/admin/article/{id}", name="admin.article.edit")
      * @param Article $article
-     * @return Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function edit(Article $article): Response
+    public function edit(Article $article)
     {
-        return $this->render('admin/article/edit.html.twig', compact('article'));
+//        $form = $this->createForm(ArticleType::class, $article);
+        $form = $this->createForm(ArticleType::class, $article);
+        return $this->render('admin/article/edit.html.twig', [
+            'article'   => $article,
+            'form'      => $form->createView()
+        ]);
     }
 }

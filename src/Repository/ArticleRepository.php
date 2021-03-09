@@ -58,6 +58,7 @@ class ArticleRepository extends ServiceEntityRepository
     public function find5Latest() :array
     {
         return $this->createQueryBuilder('a')
+            ->orderBy('a.date_creation', 'DESC' )
             ->setMaxResults(5)
             ->getQuery()
             ->getResult();

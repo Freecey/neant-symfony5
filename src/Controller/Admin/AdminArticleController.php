@@ -29,7 +29,7 @@ class AdminArticleController extends AbstractController
     }
 
     /**
-     * @Route("/admin", name="admin.article.index")
+     * @Route("/admin/article", name="admin.article.index")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index()
@@ -61,7 +61,7 @@ class AdminArticleController extends AbstractController
     }
 
     /**
-     * @Route("/admin/article/{id}", name="admin.article.edit", methods="GET|POST")
+     * @Route("/admin/article/edit/{id}", name="admin.article.edit", methods="GET|POST")
      * @param Article $article
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
@@ -84,7 +84,7 @@ class AdminArticleController extends AbstractController
     }
 
     /**
-     * @Route("/admin/article/{id}", name="admin.article.delete", methods="DELETE")
+     * @Route("/admin/article/delete/{id}", name="admin.article.delete", methods="DELETE")
      * @param Article $article
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response

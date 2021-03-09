@@ -1,0 +1,55 @@
+{%  extends 'base.html.twig' %}
+
+{% block title 'Manage Site - Neant.be'%}
+
+{%  block body %}
+
+
+    <div class="container mx-auto">
+        <h1 class="text-3xl py-5 text-center bg-blue-900">Manage Site</h1>
+
+        {% for message in app.flashes('success') %}
+            <div class="bg-green-100 border border-green-500 text-green-900 px-4 py-3 rounded relative" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <div class="parent  md:grid md:grid-cols-6">
+            <section class="sidebar bg-gray-700 md:col-span-1">
+                <div>
+                    <div class="my-5 text-center border-b-2">
+                        Quick Link
+                    </div>
+                    <div class="my-5 text-center">
+                        <a href="{{  path('admin.article.new') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">New Article</a>
+                    </div>
+                </div>
+                <div>
+                    <div class="my-5 text-center border-b-2">
+                        Manage
+                    </div>
+                    <div class="my-5 text-center">
+                        <a href="#" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Home</a>
+                    </div>
+                    <div class="my-5 text-center">
+                        <a href="{{  path('admin.article.index') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Articles</a>
+                    </div>
+                    <div class="my-5 text-center">
+                        <a href="#" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Tutorials</a>
+                    </div>
+                    <div class="my-5 text-center">
+                        <a href="#" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Abouts</a>
+                    </div>
+                    <div class="my-5 text-center">
+                        <a href="#" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Users</a>
+                    </div>
+                    <div class="my-5 text-center">
+                        <a href="#" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Sites Setting</a>
+                    </div>
+                </div>
+            </section>
+            <main class="main bg-gray-400 md:col-span-5">SOON</main>
+        </div>
+
+    </div>
+{%  endblock %}

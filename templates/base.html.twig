@@ -63,7 +63,7 @@
                             <a href="{{ path('article.index') }}" class="{% if current_menu is defined and current_menu == 'articles' %} {{ activeMenu }}  {% else %} {{ inactiveMenu}} {% endif %}">Articles</a>
                             <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Tutorials</a>
 {#                            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Projects</a>#}
-                            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
+                            <a href="{{ path('about.index') }}" class="{% if current_menu is defined and current_menu == 'about' %} {{ activeMenu }}  {% else %} {{ inactiveMenu}} {% endif %}">About</a>
                         </div>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                 <a href="{{ path('article.index') }}" class="{% if current_menu is defined and  current_menu == 'articles' %} {{ activeMenuMobile }}  {% else %} {{ inactiveMenuMobile }} {% endif %}">Articles</a>
                 <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Tutorials</a>
 {#                <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Projects</a>#}
-                <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="{{ path('about.index') }}" class="{% if current_menu is defined and  current_menu == 'about' %} {{ activeMenuMobile }}  {% else %} {{ inactiveMenuMobile }} {% endif %}">About</a>
             </div>
         </div>
     </nav>

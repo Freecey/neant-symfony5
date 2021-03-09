@@ -2,17 +2,8 @@
 
 {% block title 'Welcome to Neant.be'%}
 
-
 {% block prebody %}
-    <div style="background-image: url('/assets/img/universe-BG.webp');">
-        <div style="background-image: url('/assets/img/default-monochrome.svg');background-repeat: no-repeat;
-
-  background-position:50% 50%;
-  background-size: 90% 40%;
-  height: 400px;
-  width: 100%;">
-        </div>
-    </div>
+    {{ include ('parts/_prebody.html.twig') }}
 {% endblock %}
 
 {%  block body %}

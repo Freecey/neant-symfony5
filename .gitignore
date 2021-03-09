@@ -79,5 +79,5 @@ npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
-!vendor/symfony/twig-bridge/Resources/views/Form/form_div_layout.html.twig
-!vendor/symfony/twig-bridge/Resources/views/Form/tailwind_layout.html.twig
+!/vendor/symfony/twig-bridge/Resources/views/Form/form_div_layout.html.twig
+!/vendor/symfony/twig-bridge/Resources/views/Form/tailwind_layout.html.twig

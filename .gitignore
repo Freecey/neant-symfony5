@@ -6,7 +6,7 @@
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /var/
-#/vendor/*
+/vendor/
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
@@ -48,17 +48,17 @@
 !bin/console
 !bin/symfony_requirements
 /vendor/*
-!/vendor/symfony/
-/vendor/symfony/*
-!/vendor/symfony/twig-bridge/
-/vendor/symfony/twig-bridge/*
-!/vendor/symfony/twig-bridge/Resources/
-/vendor/symfony/twig-bridge/Resources/*
-!/vendor/symfony/twig-bridge/Resources/views/
-/vendor/symfony/twig-bridge/Resources/views/*
-!/vendor/symfony/twig-bridge/Resources/views/Form/
-/vendor/symfony/twig-bridge/Resources/views/Form/*
-!/vendor/symfony/twig-bridge/Resources/views/Form/tailwind_layout.html.twig
+#!/vendor/symfony/
+#/vendor/symfony/*
+#!/vendor/symfony/twig-bridge/
+#/vendor/symfony/twig-bridge/*
+#!/vendor/symfony/twig-bridge/Resources/
+#/vendor/symfony/twig-bridge/Resources/*
+#!/vendor/symfony/twig-bridge/Resources/views/
+#/vendor/symfony/twig-bridge/Resources/views/*
+#!/vendor/symfony/twig-bridge/Resources/views/Form/
+#/vendor/symfony/twig-bridge/Resources/views/Form/*
+#!/vendor/symfony/twig-bridge/Resources/views/Form/tailwind_layout.html.twig
 #!/vendor/symfony/twig-bridge/Resources/views/Form/*
 # Assets and user uploads
 /web/bundles/

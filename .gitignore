@@ -58,7 +58,6 @@
 /vendor/symfony/twig-bridge/Resources/views/*
 !/vendor/symfony/twig-bridge/Resources/views/Form/
 /vendor/symfony/twig-bridge/Resources/views/Form/*
-!/vendor/symfony/twig-bridge/Resources/views/Form/form_div_layout.html.twig
 !/vendor/symfony/twig-bridge/Resources/views/Form/tailwind_layout.html.twig
 #!/vendor/symfony/twig-bridge/Resources/views/Form/*
 # Assets and user uploads

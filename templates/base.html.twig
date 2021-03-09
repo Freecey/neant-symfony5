@@ -15,7 +15,7 @@
             {#{{ encore_entry_script_tags('app') }}#}
         {% endblock %}
     </head>
-    <body class="bg-indigo-900 text-yellow-100 flex flex-col h-full">
+    <body class="bg-indigo-900 text-yellow-100 flex flex-col h-full h-screen justify-between">
     <!-- This example requires Tailwind CSS v2.0+ -->
     <nav class="bg-gray-800">
         <div class="container mx-auto">
@@ -85,7 +85,7 @@
         </div>
     </nav>
         {% block prebody %}{% endblock %}
-    <main id='content' class='flex-1 p-8'>
+    <main id='content' class='flex-1 p-8 '>
         {% block body %}{% endblock %}
     </main>
 
@@ -101,6 +101,7 @@
 {#    </footer>#}
     <footer class='bg-gray-800 w-full text-center text-gray-400 p-4'>
         Made with 😃 by Cedric AUDRIT
+        <input type="hidden" class="text-green-900 bg-blue-500 hover:bg-blue-700 text-white font-bold focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border-gray-300 rounded-md">
     </footer>
 
     <script>

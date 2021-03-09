@@ -5,7 +5,9 @@
 {% block body %}
 
     <div class="container mx-auto">
-        <h2>Edit Article</h2>
+        <h2 class="text-3xl my-4">Edit Article</h2>
+        {{ include ('admin/article/_form.html.twig', {form: form, button: 'Save change'}) }}
+
     </div>
 
 {% endblock %}

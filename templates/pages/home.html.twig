@@ -17,22 +17,22 @@
 
 {%  block body %}
 
-    <div class="container mx-auto">
+    <div class="container mx-auto my-5">
 {#        <h1 class="text-2xl text-center mb-6 text-white">Hello World</h1>#}
         <p class="text-center w-4/6 mx-auto">Everything that's created comes out of silence. Your thoughts emerge from the nothingness of silence. Your words come out of this void. Your very essence emerged from emptiness. All creativity requires some stillness.</p>
         <p class="text-right w-4/6 mx-auto"><small>Wayne Dyer</small></p>
     </div>
 
     <div class="container mx-auto text-3xl">
-        <h2 class="text-yellow-500 my-5">Last Articles</h2>
+        <h2 class="text-yellow-500 p-5 bg-gray-700">Last Articles :</h2>
             {% for article in articles %}
-                <div class="w-full lg:max-w-full lg:flex">
+                <div class="my-2 w-full lg:max-w-full lg:flex">
                     <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url('https://source.unsplash.com/200x200/?astronomy,space')" title="Mountain">
                     </div>
-                    <div class="rounded-b lg:rounded-b-none lg:rounded-r p-4 flex-1 flex flex-col  justify-between leading-normal bg-gray-600">
+                    <div class="rounded-b lg:rounded-b-none lg:rounded-r p-4 flex-1 flex flex-col  justify-between leading-normal bg-blue-900">
                         <div class="mb-8">
 
-                            <div class="text-gray-900 font-bold text-xl">{{ article.title }}</div>
+                            <div class="text-yellow-200 font-bold text-xl">{{ article.title }}</div>
                             <p class="text-sm text-gray-400 flex items-center mb-2">
                                 {{ article.categoryType }}
                             </p>

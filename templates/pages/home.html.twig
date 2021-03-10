@@ -2,17 +2,8 @@
 
 {% block title 'Welcome to Neant.be'%}
 
-
 {% block prebody %}
-    <div style="background-image: url('/assets/img/universe-BG.webp');">
-        <div style="background-image: url('/assets/img/default-monochrome.svg');background-repeat: no-repeat;
-
-  background-position:50% 50%;
-  background-size: 90% 40%;
-  height: 400px;
-  width: 100%;">
-        </div>
-    </div>
+    {{ include ('parts/_prebody.html.twig') }}
 {% endblock %}
 
 {%  block body %}
@@ -27,27 +18,29 @@
         <h2 class="text-yellow-500 p-5 bg-gray-700">Last Articles :</h2>
             {% for article in articles %}
                 <div class="my-2 w-full lg:max-w-full lg:flex">
-                    <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url('https://source.unsplash.com/200x200/?astronomy,space')" title="Mountain">
+                    <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url('https://source.unsplash.com/200x200/?astronomy,space')" title="...">
                     </div>
                     <div class="rounded-b lg:rounded-b-none lg:rounded-r p-4 flex-1 flex flex-col  justify-between leading-normal bg-blue-900">
                         <div class="mb-8">
 
                             <div class="text-yellow-200 font-bold text-xl">{{ article.title }}</div>
-                            <p class="text-sm text-gray-400 flex items-center mb-2">
-                                {{ article.categoryType }}
-                            </p>
+{#                            <p class="text-sm text-gray-400 flex items-center mb-2">#}
+
                             <p class="text-base text-white">{{ article.intro }}</p>
                         </div>
                         <div class="flex items-center">
 {#                            <img class="w-10 h-10 rounded-full mr-4" src="" alt="Avatar of Writer">#}
                             <div class="text-sm grid grid-cols-12 w-full">
-                                <div class="col-start-1 col-end-7 text-gray-400 leading-none">
+                                <div class="col-start-1 col-end-9 text-gray-400 leading-none">
+                                                                <span class="mx-4 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 rounded-full bg-white text-gray-700 border">
+                                {{ article.categoryType }}
+                            </span>
                                     {{ article.dateCreation|date("m/d/Y") }} - by
                                     {{ article.author }}
 
                                 </div>
-                                <div class="col-end-13 col-span-6 text-right">
-                                    <a href="{{ path('article.show', {id: article.id, slug: article.slug}) }}" class="uppercase text-base text-gray-400 hover:text-black">Read more →</a>
+                                <div class="col-end-13 col-span-4 text-right">
+                                    <a href="{{ path('article.show', {id: article.id, slug: article.slug}) }}" class="uppercase text-base text-gray-400 hover:text-black">Read more 🢂</a>
                                 </div>
                             </div>
                         </div>

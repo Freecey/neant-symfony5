@@ -56,7 +56,7 @@ class Articles
     private $Users;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comments::class, mappedBy="articles")
+     * @ORM\OneToMany(targetEntity=Comments::class, mappedBy="articles", orphanRemoval=true)
      */
     private $comments;
 

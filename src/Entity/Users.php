@@ -6,10 +6,12 @@ use App\Repository\UsersRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UsersRepository::class)
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 class Users implements UserInterface
 {
@@ -44,12 +46,12 @@ class Users implements UserInterface
     /**
      * @ORM\Column(type="datetime")
      */
-    private $create_at;
+    private $created_at;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $agreement;
+    private $agreeterms = true;
 
     /**
      * @ORM\OneToMany(targetEntity=Articles::class, mappedBy="Users")
@@ -63,6 +65,8 @@ class Users implements UserInterface
 
     public function __construct()
     {
+        $this->created_at = new \DateTime();
+
         $this->articles = new ArrayCollection();
         $this->comments = new ArrayCollection();
     }
@@ -165,21 +169,21 @@ class Users implements UserInterface
         return $this->create_at;
     }
 
-    public function setCreateAt(\DateTimeInterface $create_at): self
+    public function setCreateAt(\DateTimeInterface $created_at): self
     {
-        $this->create_at = $create_at;
+        $this->create_at = $created_at;
 
         return $this;
     }
 
-    public function getAgreement(): ?bool
+    public function getAgreeTerms(): ?bool
     {
-        return $this->agreement;
+        return $this->agreeterms;
     }
 
-    public function setAgreement(bool $agreement): self
+    public function setAgreeTerms(bool $agreeterms): self
     {
-        $this->agreement = $agreement;
+        $this->agreeterms = $agreeterms;
 
         return $this;
     }

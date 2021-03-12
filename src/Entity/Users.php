@@ -72,6 +72,11 @@ class Users implements UserInterface
         $this->comments = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->getAlias();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

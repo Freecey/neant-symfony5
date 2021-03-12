@@ -6,9 +6,13 @@ use App\Repository\ArticlesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=ArticlesRepository::class)
+ * @Vich\Uploadable
  */
 class Articles
 {
@@ -25,7 +29,8 @@ class Articles
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(length=128, unique=true)
      */
     private $slug;
 
@@ -35,19 +40,32 @@ class Articles
     private $content;
 
     /**
+     * @var \DateTime $created_at
+     *
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
     private $created_at;
 
     /**
+     * @var \DateTime $updated_at
+     *
+     * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
      */
     private $updated_at;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @var string
      */
     private $featured_image;
+
+    /**
+     * @Vich\UploadableField(mapping="featured_images", fileNameProperty="featured_image")
+     * @var File
+     */
+    private $imageFile;
 
     /**
      * @ORM\ManyToOne(targetEntity=Users::class, inversedBy="articles")
@@ -69,6 +87,11 @@ class Articles
      * @ORM\ManyToMany(targetEntity=Categories::class, inversedBy="articles")
      */
     private $categories;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $intro;
 
     public function __construct()
     {
@@ -99,12 +122,12 @@ class Articles
         return $this->slug;
     }
 
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
+//    public function setSlug(string $slug): self
+//    {
+//        $this->slug = $slug;
+//
+//        return $this;
+//    }
 
     public function getContent(): ?string
     {
@@ -123,35 +146,55 @@ class Articles
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeInterface $created_at): self
-    {
-        $this->created_at = $created_at;
-
-        return $this;
-    }
+//    public function setCreatedAt(\DateTimeInterface $created_at): self
+//    {
+//        $this->created_at = $created_at;
+//
+//        return $this;
+//    }
 
     public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updated_at;
     }
 
-    public function setUpdatedAt(\DateTimeInterface $updated_at): self
-    {
-        $this->updated_at = $updated_at;
-
-        return $this;
-    }
+//    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+//    {
+//        $this->updated_at = $updated_at;
+//
+//        return $this;
+//    }
 
     public function getFeaturedImage(): ?string
     {
         return $this->featured_image;
     }
 
-    public function setFeaturedImage(string $featured_image): self
+    public function setFeaturedImage(?string $featured_image): self
     {
         $this->featured_image = $featured_image;
 
         return $this;
+    }
+
+    /**
+     * @param File|null $imageFile
+     */
+    public function setImageFile(?File $imageFile = null)
+    {
+        $this->imageFile = $imageFile;
+
+        if ($imageFile) {
+            $this->updated_at = new \DateTime('now');
+        }
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
     }
 
     public function getUsers(): ?Users
@@ -240,6 +283,18 @@ class Articles
     public function removeCategory(Categories $category): self
     {
         $this->categories->removeElement($category);
+
+        return $this;
+    }
+
+    public function getIntro(): ?string
+    {
+        return $this->intro;
+    }
+
+    public function setIntro(string $intro): self
+    {
+        $this->intro = $intro;
 
         return $this;
     }

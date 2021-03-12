@@ -6,6 +6,7 @@ use App\Repository\KeywordsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=KeywordsRepository::class)
@@ -25,7 +26,8 @@ class Keywords
     private $keyword;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @Gedmo\Slug(fields={"keyword"})
+     * @ORM\Column(length=128, unique=true)
      */
     private $slug;
 
@@ -37,6 +39,11 @@ class Keywords
     public function __construct()
     {
         $this->articles = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->keyword;
     }
 
     public function getId(): ?int
@@ -61,12 +68,12 @@ class Keywords
         return $this->slug;
     }
 
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
+//    public function setSlug(string $slug): self
+//    {
+//        $this->slug = $slug;
+//
+//        return $this;
+//    }
 
     /**
      * @return Collection|Articles[]

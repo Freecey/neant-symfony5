@@ -20,6 +20,13 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 class ArticlesCrudController extends AbstractCrudController
 {
 
+//    public function configureCrud(Crud $crud): Crud
+//    {
+//        return $crud
+//            ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig')
+//            ;
+//    }
+
     public static function getEntityFqcn(): string
     {
         return Articles::class;
@@ -32,7 +39,9 @@ class ArticlesCrudController extends AbstractCrudController
 //            IdField::new('id')->onlyOnIndex(),
             TextField::new('title'),
             TextareaField::new('intro'),
-//             TextareaField::new('content')->onlyOnForms()->setFormType(CKEditorType::class),
+//            TextEditorField::new('content', 'content')
+//                ->setFormType(CKEditorType::class),
+//            TextareaField::new('content')->setFormType(CKEditorType::class),
             TextEditorField::new('content'),
 //            CodeEditorField::new('content'),
             TextareaField::new('imageFile')->setFormType(VichImageType::class),

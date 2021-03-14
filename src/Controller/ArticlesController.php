@@ -33,7 +33,6 @@ class ArticlesController extends AbstractController
     public function index(ArticlesRepository $repository) : Response
     {
         $articles = $repository->findAll();
-//        dump($allArticles);
         return $this->render('article/index.html.twig', [
             'current_menu' => 'articles',
             'articles' => $articles
@@ -63,7 +62,6 @@ class ArticlesController extends AbstractController
         $em=$this->getDoctrine()->getManager();
         $comment = new Comments();
         $currentUser = $this->getUser();
-        dump($currentUser);
 
         $comment->addUser($currentUser);
         $form = $this->createForm(CommentsType::class, $comment);
@@ -73,12 +71,20 @@ class ArticlesController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $comment->setArticles($article);
             $comment->setCreatedAt(new \DateTime('now'));
-//            $comment->addUser($user);
-
 
             $doctrine = $this->getDoctrine()->getManager();
             $doctrine->persist($comment);
             $doctrine->flush();
+            $newID = $comment->getId();
+            return $this->redirectToRoute('article.show', [
+                    'id' => $article->getId(),
+                    'slug' => $article->getSlug(),
+                    '_fragment' => $newID
+                ]
+            );
+//                , ['_anchor' => $newID]);
+
+
         }
 
         return $this->render('article/show.html.twig',[

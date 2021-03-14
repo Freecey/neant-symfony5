@@ -27,7 +27,7 @@
         </div>
         <h2 class="my-5 text-2xl text-yellow-500">Comments ({{ article.comments|length }})</h2>
         {% for comment in article.comments %}
-            <div class="my-3 border">
+            <div class="my-3 border" id="{{ comment.id }}">
                 <div class="p-4">
                     <p class="mb-2">Publish by <span class="font-bold">{{ comment.user.values[0].alias }}</span>
                         <span class="text-sm">({{ comment.createdAt|date("m/d/Y") }})</span>:</p>

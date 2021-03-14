@@ -5,6 +5,11 @@ security:
       algorithm: bcrypt
       cost: 13
 
+  role_hierarchy:
+    ROLE_USER: ROLE_USER # user front-end
+    ROLE_ADMIN: ROLE_USER # admin (minimum level to access back-office)
+    ROLE_SUPER_ADMIN: [ ROLE_USER, ROLE_ADMIN ] # super-admin
+
   # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
   providers:
     # used to reload user from session & other features (e.g. switch_user)

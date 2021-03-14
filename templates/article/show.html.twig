@@ -32,10 +32,14 @@
         {% else %}
         <p>No comment at this time.</p>
         {% endfor %}
+        {% if app.user %}
         <h2>Add comment</h2>
         <div>
             {{ form(commentForm) }}
         </div>
+            {% else %}
+            <div>You must be registered to post comments</div>
+        {% endif %}
 
     </div>
 {% endblock %}

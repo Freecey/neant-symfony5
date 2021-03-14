@@ -51,8 +51,19 @@ class ArticlesController extends AbstractController
             ], 301);
         }
 
+        if ($this->isGranted('ROLE_USER') == false) {
+            return $this->render('article/show.html.twig',[
+                'article' => $article,
+                'current_menu' => 'articles',
+            ]);
+        } else {
+
+        $em=$this->getDoctrine()->getManager();
         $comment = new Comments();
-//        $comment->addUser($this->getUser());
+        $currentUser = $this->getUser();
+        dump($currentUser);
+
+        $comment->addUser($currentUser);
         $form = $this->createForm(CommentsType::class, $comment);
 
         $form->handleRequest($request);
@@ -73,6 +84,7 @@ class ArticlesController extends AbstractController
             'current_menu' => 'articles',
             'commentForm' => $form->createView()
         ]);
+        }
     }
 
 }

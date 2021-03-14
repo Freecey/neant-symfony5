@@ -82,8 +82,6 @@ class ArticlesController extends AbstractController
                     '_fragment' => $newID
                 ]
             );
-//                , ['_anchor' => $newID]);
-
 
         }
 

@@ -18,7 +18,11 @@ class HomeController extends AbstractController
 
     public function index(ArticlesRepository $repository): Response
     {
-        $articles = $repository->findAll();
+        $articles = $repository->findBy(
+            array(),
+            array('id' => 'DESC'),
+            $limit = 5,
+        );
         return $this->render('pages/home.html.twig', [
             'current_menu' => 'home',
             'articles' => $articles

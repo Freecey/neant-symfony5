@@ -25,15 +25,20 @@
         <div class="rounded-b lg:rounded-b-none lg:rounded-r p-4 flex-1 flex flex-col  justify-between leading-normal bg-gray-700">
         {{ article.content|raw   }}
         </div>
-        <h2>Comments ({{ article.comments|length }})</h2>
+        <h2 class="my-5 text-2xl text-yellow-500">Comments ({{ article.comments|length }})</h2>
         {% for comment in article.comments %}
-{#        <p>Publish by {{ comment.user(alias) }}</p>#}
-        <div>{{ comment.content }}</div>
+            <div class="my-3 border">
+                <div class="p-4">
+                    <p class="mb-2">Publish by <span class="font-bold">{{ comment.user.values[0].alias }}</span>
+                        <span class="text-sm">({{ comment.createdAt|date("m/d/Y") }})</span>:</p>
+                    <div>{{ comment.content }}</div>
+                </div>
+            </div>
         {% else %}
         <p>No comment at this time.</p>
         {% endfor %}
         {% if app.user %}
-        <h2>Add comment</h2>
+        <h2 class="my-5 text-2xl text-yellow-500">Add comment</h2>
         <div>
             {{ form(commentForm) }}
         </div>

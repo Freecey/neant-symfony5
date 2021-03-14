@@ -26,15 +26,17 @@ class ArticlesController extends AbstractController
 
     /**
      * @Route("/articles", name="article.index")
+     * @param ArticlesRepository $repository
      * @return Response
      */
 
-    public function index() : Response
+    public function index(ArticlesRepository $repository) : Response
     {
-        $allArticles = $this->repository->findAll();
-        dump($allArticles);
+        $articles = $repository->findAll();
+//        dump($allArticles);
         return $this->render('article/index.html.twig', [
-            'current_menu' => 'articles'
+            'current_menu' => 'articles',
+            'articles' => $articles
         ]);
     }
 

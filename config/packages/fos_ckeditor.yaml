@@ -1,15 +1,23 @@
 # Read the documentation: https://symfony.com/doc/current/bundles/FOSCKEditorBundle/index.html
 fos_ck_editor:
-    input_sync: true
-    default_config: base_config
+    base_path: "build/ckeditor"
+    js_path:   "build/ckeditor/ckeditor.js"
     configs:
-        base_config:
-            toolbar: full
-
-twig:
-    form_themes:
-#        - "@EasyAdmin/form/bootstrap_4.html.twig"
-        - "@FOSCKEditor/Form/ckeditor_widget.html.twig"
+        config:
+            # toolbar: full
+            - { name: "styles", items: ['Bold', 'Italic', 'Underline', 'Strike', 'Blockquote', '-', 'Link', '-', 'RemoveFormat', '-', 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'Image', 'Table', '-', 'Styles', 'Format','Font','FontSize', '-', 'TextColor', 'BGColor', 'Source'] }
+        #toolbar: [ ["Source", "-", "Save"], "/", ["Anchor"], "/", ["Maximize"] ]
+#fos_ck_editor:
+#    input_sync: true
+#    default_config: base_config
+#    configs:
+#        base_config:
+#            toolbar: full
+#
+#twig:
+#    form_themes:
+##        - "@EasyAdmin/form/bootstrap_4.html.twig"
+#        - "@FOSCKEditor/Form/ckeditor_widget.html.twig"
 
 
 #twig:

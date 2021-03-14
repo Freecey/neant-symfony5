@@ -15,15 +15,15 @@ class UsersCrudController extends AbstractCrudController
     }
 
 
-//    public function configureFields(string $pageName): iterable
-//    {
-//        return [
-////            IdField::new('id'),
-//            TextField::new('alias'),
-//            TextField::new('email'),
-//            ChoiceField::new('roles'),
-////            TextEditorField::new('description'),
-//        ];
-//    }
+    public function configureFields(string $pageName): iterable
+    {
+        return [
+//            IdField::new('id'),
+            TextField::new('alias'),
+            TextField::new('email'),
+            ChoiceField::new('roles'),
+//            TextEditorField::new('description'),
+        ];
+    }
 
 }

@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Articles;
 use App\Entity\Users;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -16,16 +17,18 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use App\Controller\Admin\Field\CKEditorField;
 
 class ArticlesCrudController extends AbstractCrudController
 {
 
-//    public function configureCrud(Crud $crud): Crud
-//    {
-//        return $crud
-//            ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig')
-//            ;
-//    }
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            // ...
+            ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig')
+            ;
+    }
 
     public static function getEntityFqcn(): string
     {
@@ -41,10 +44,11 @@ class ArticlesCrudController extends AbstractCrudController
             TextareaField::new('intro'),
 //            TextEditorField::new('content', 'content')
 //                ->setFormType(CKEditorType::class),
-//            TextareaField::new('content')->setFormType(CKEditorType::class),
-            TextEditorField::new('content'),
+//            TextareaField::new('content')
+            TextEditorField::new('content')->setFormType(CKEditorType::class),
+//            CKEditorField::new('content')->hideOnIndex(),
 //            CodeEditorField::new('content'),
-            TextareaField::new('imageFile')->setFormType(VichImageType::class),
+            TextareaField::new('imageFile')->setFormType(VichImageType::class)->hideOnIndex(),
             AssociationField::new('Users'),
             AssociationField::new('categories'),
             AssociationField::new('keywords')

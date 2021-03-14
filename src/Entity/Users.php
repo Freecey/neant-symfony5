@@ -12,6 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Entity(repositoryClass=UsersRepository::class)
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @UniqueEntity(fields={"alias"}, message="alias {{ value }} already exists")
  */
 class Users implements UserInterface
 {
@@ -39,7 +40,7 @@ class Users implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=48, unique=true)
      */
     private $alias;
 
@@ -69,6 +70,11 @@ class Users implements UserInterface
 
         $this->articles = new ArrayCollection();
         $this->comments = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->getAlias();
     }
 
     public function getId(): ?int

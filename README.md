@@ -4,9 +4,9 @@
 Lightweight and easy-to-use Blog solution for PHP using Symfony5 framework.
 
 ## Requirements
-* PHP 7.2.5 or higher;
+* PHP 8.0 or higher;
 * MariaDB
-* Tailwind CSS 2.0.3
+* composer 2.0 or higher;
 * and the [usual Symfony application requirements](http://symfony.com/doc/current/reference/requirements.html).
 
 ## Quickstart - Installation

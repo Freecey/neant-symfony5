@@ -11,17 +11,19 @@
         <h1 class="my-5 text-3xl text-yellow-500">{{ article.title }}</h1>
         <div class="text-sm grid grid-cols-12 w-full my-5">
             <div class="col-start-1 col-end-7 text-gray-400 leading-none">
-                <span class="mx-4 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 rounded-full bg-white text-gray-700 border">
-                                {{ article.categoryType }}
-                            </span>
+                    {% for cat in article.categories %}
+                        <span class="mx-2 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 rounded-full bg-white text-gray-700 border">
+                                        {{cat.name}}
+                                    </span>
+                    {% endfor %}
             </div>
             <div class="mx-4 col-end-13 col-span-6 text-right text-gray-400">
-                by {{ article.author }} --
-                {{ article.dateCreation|date("m/d/Y") }}
+                by {{ article.users }} --
+                {{ article.createdAt|date("m/d/Y") }}
             </div>
         </div>
         <div class="rounded-b lg:rounded-b-none lg:rounded-r p-4 flex-1 flex flex-col  justify-between leading-normal bg-gray-700">
-        {{ article.content | raw }}
+        {{ article.content|raw   }}
         </div>
 
     </div>

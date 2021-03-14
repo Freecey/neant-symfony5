@@ -25,6 +25,17 @@
         <div class="rounded-b lg:rounded-b-none lg:rounded-r p-4 flex-1 flex flex-col  justify-between leading-normal bg-gray-700">
         {{ article.content|raw   }}
         </div>
+        <h2>Comments ({{ article.comments|length }})</h2>
+        {% for comment in article.comments %}
+{#        <p>Publish by {{ comment.user(alias) }}</p>#}
+        <div>{{ comment.content }}</div>
+        {% else %}
+        <p>No comment at this time.</p>
+        {% endfor %}
+        <h2>Add comment</h2>
+        <div>
+            {{ form(commentForm) }}
+        </div>
 
     </div>
 {% endblock %}

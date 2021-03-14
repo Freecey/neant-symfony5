@@ -8,9 +8,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -42,12 +39,8 @@ class ArticlesCrudController extends AbstractCrudController
 //            IdField::new('id')->onlyOnIndex(),
             TextField::new('title'),
             TextareaField::new('intro'),
-//            TextEditorField::new('content', 'content')
-//                ->setFormType(CKEditorType::class),
-//            TextareaField::new('content')
-            TextEditorField::new('content')->setFormType(CKEditorType::class),
+            TextEditorField::new('content')->setFormType(CKEditorType::class)->hideOnIndex(),
 //            CKEditorField::new('content')->hideOnIndex(),
-//            CodeEditorField::new('content'),
             TextareaField::new('imageFile')->setFormType(VichImageType::class)->hideOnIndex(),
             AssociationField::new('Users'),
             AssociationField::new('categories'),

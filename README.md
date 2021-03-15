@@ -3,8 +3,8 @@
 ## Description
 Lightweight and easy-to-use Blog solution for PHP using Symfony5 framework.
 
-## Description
-[Live version](https://www.neant.be)
+## Live version
+[https://www.neant.be](https://www.neant.be)
 
 ## Requirements
 * PHP 8.0 or higher;

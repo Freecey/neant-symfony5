@@ -36,6 +36,11 @@ class Categories
      */
     private $articles;
 
+    /**
+     * @ORM\Column(type="string", length=64, nullable=true)
+     */
+    private $Color;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -98,6 +103,18 @@ class Categories
         if ($this->articles->removeElement($article)) {
             $article->removeCategory($this);
         }
+
+        return $this;
+    }
+
+    public function getColor(): ?string
+    {
+        return $this->Color;
+    }
+
+    public function setColor(?string $Color): self
+    {
+        $this->Color = $Color;
 
         return $this;
     }

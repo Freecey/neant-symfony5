@@ -11,7 +11,7 @@
         <h1 class="text-2xl text-center my-3">All Articles</h1>
     </div>
     <div class="pagination text-center">
-        {{ knp_pagination_render(articles, '@KnpPaginator/Pagination/tailwindcss_pagination.html.twig') }}
+        {{ knp_pagination_render(articles, '/parts/_tailwindcss_pagination.html.twig') }}
     </div>
     <div class="container mx-auto text-3xl">
         {% for article in articles %}
@@ -58,6 +58,6 @@
         {%  endfor %}
     </div>
     <div class="pagination text-center">
-        {{ knp_pagination_render(articles, '@KnpPaginator/Pagination/tailwindcss_pagination.html.twig') }}
+        {{ knp_pagination_render(articles, '/parts/_tailwindcss_pagination.html.twig') }}
     </div>
 {%  endblock %}

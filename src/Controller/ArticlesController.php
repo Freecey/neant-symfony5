@@ -6,6 +6,7 @@ use App\Entity\Comments;
 use App\Entity\Users;
 use App\Form\CommentsType;
 use App\Repository\ArticlesRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,14 +27,16 @@ class ArticlesController extends AbstractController
 
     /**
      * @Route("/articles", name="article.index")
-     * @param ArticlesRepository $repository
+     * @param PaginatorInterface $paginator
+     * @param Request $request
      * @return Response
      */
 
-    public function index(ArticlesRepository $repository) : Response
+    public function index(PaginatorInterface $paginator,Request $request) : Response
     {
-        $articles = $repository->findAll();
-//        dump($allArticles);
+        $articles = $paginator->paginate($this->repository->findAll(),
+        $request->query->getInt('page', 1), 5
+        );
         return $this->render('article/index.html.twig', [
             'current_menu' => 'articles',
             'articles' => $articles
@@ -63,7 +66,6 @@ class ArticlesController extends AbstractController
         $em=$this->getDoctrine()->getManager();
         $comment = new Comments();
         $currentUser = $this->getUser();
-        dump($currentUser);
 
         $comment->addUser($currentUser);
         $form = $this->createForm(CommentsType::class, $comment);
@@ -73,12 +75,18 @@ class ArticlesController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $comment->setArticles($article);
             $comment->setCreatedAt(new \DateTime('now'));
-//            $comment->addUser($user);
-
 
             $doctrine = $this->getDoctrine()->getManager();
             $doctrine->persist($comment);
             $doctrine->flush();
+            $newID = $comment->getId();
+            return $this->redirectToRoute('article.show', [
+                    'id' => $article->getId(),
+                    'slug' => $article->getSlug(),
+                    '_fragment' => $newID
+                ]
+            );
+
         }
 
         return $this->render('article/show.html.twig',[

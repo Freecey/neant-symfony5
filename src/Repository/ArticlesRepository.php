@@ -4,7 +4,9 @@ namespace App\Repository;
 
 use App\Entity\Articles;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
+use phpDocumentor\Reflection\Types\This;
 
 /**
  * @method Articles|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +19,16 @@ class ArticlesRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Articles::class);
+    }
+
+    /**
+     * @return Query
+     *
+     */
+    public function findAllDescQuery(): Query
+    {
+        return $this->findAll()
+            ->getQuery();
     }
 
     // /**

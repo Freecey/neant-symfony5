@@ -38,7 +38,7 @@
                                 <div class="col-start-1 col-end-9 text-gray-400 leading-none">
 
                                     {% for cat in article.categories %}
-                                    <span class="mx-2 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 rounded-full bg-white text-gray-700 border">
+                                    <span class="mx-2 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 rounded-full text-gray-700 " style="background-color:{{cat.color}}">
                                         {{cat.name}}
                                     </span>
                                     {% endfor %}

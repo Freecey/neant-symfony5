@@ -12,7 +12,7 @@
         <div class="text-sm grid grid-cols-12 w-full my-5">
             <div class="col-start-1 col-end-7 text-gray-400 leading-none">
                     {% for cat in article.categories %}
-                        <span class="mx-2 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 rounded-full bg-white text-gray-700 border">
+                        <span class="mx-2 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 rounded-full text-gray-700" style="background-color:{{cat.color}}">
                                         {{cat.name}}
                                     </span>
                     {% endfor %}
@@ -27,7 +27,7 @@
         </div>
         <h2 class="my-5 text-2xl text-yellow-500">Comments ({{ article.comments|length }})</h2>
         {% for comment in article.comments %}
-            <div class="my-3 border">
+            <div class="my-3 border" id="{{ comment.id }}">
                 <div class="p-4">
                     <p class="mb-2">Publish by <span class="font-bold">{{ comment.user.values[0].alias }}</span>
                         <span class="text-sm">({{ comment.createdAt|date("m/d/Y") }})</span>:</p>

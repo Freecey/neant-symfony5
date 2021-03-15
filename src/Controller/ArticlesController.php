@@ -6,6 +6,7 @@ use App\Entity\Comments;
 use App\Entity\Users;
 use App\Form\CommentsType;
 use App\Repository\ArticlesRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,13 +27,16 @@ class ArticlesController extends AbstractController
 
     /**
      * @Route("/articles", name="article.index")
-     * @param ArticlesRepository $repository
+     * @param PaginatorInterface $paginator
+     * @param Request $request
      * @return Response
      */
 
-    public function index(ArticlesRepository $repository) : Response
+    public function index(PaginatorInterface $paginator,Request $request) : Response
     {
-        $articles = $repository->findAll();
+        $articles = $paginator->paginate($this->repository->findAll(),
+        $request->query->getInt('page', 1), 5
+        );
         return $this->render('article/index.html.twig', [
             'current_menu' => 'articles',
             'articles' => $articles

@@ -2,10 +2,12 @@
 
 namespace App\Controller\Admin;
 
+use App\Controller\HomeController;
 use App\Entity\Articles;
 use App\Entity\Categories;
 use App\Entity\Keywords;
 use App\Entity\Users;
+use ContainerSWxTVVC\getHomeControllerService;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\UserMenu;
@@ -36,11 +38,12 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
+        yield MenuItem::linktoDashboard('Dashboard', 'fas fa-tachometer-alt');
         yield MenuItem::linkToCrud('Articles', 'fas fa-newspaper', Articles::class);
         yield MenuItem::linkToCrud('Categories', 'fas fa-align-center', Categories::class);
         yield MenuItem::linkToCrud('KeyWords', 'fab fa-searchengin', Keywords::class);
         yield MenuItem::linkToCrud('Users', 'fa fa-user', Users::class);
+        yield MenuItem::linkToUrl('Site Home', 'fa fa-home', '/');
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
     public function configureUserMenu(UserInterface $user): UserMenu

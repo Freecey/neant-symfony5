@@ -3,50 +3,66 @@
 {% block title %}Your Profile{% endblock %}
 
 {% block profilemainsection %}
-                <section class="p-9">
-                    <div>
-                        Alias : {{ app.user.alias }}
-                    </div>
-                    <div>
-                        Email : {{ app.user.email }}
-                    </div>
-{#                    <div>#}
-{#                        Member since : {{ app.user.created_at|date("m/d/Y") }}#}
-{#                    </div>#}
-                    <div class="my-5">
-                        <a href="{{ path('profile.edit') }}" class="group justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            Edit profile
-                        </a>
-                    </div>
-                    <div class="my-5">
-                        <a href="{{ path('profile.change.password') }}" class="group justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            Change Password
-                        </a>
-                    </div>
-                </section>
-                <section class="p-9">
-                    <div class="text-xl my-5">
-                        Last Articles :
-                    </div>
-                    <div class="grid grid-cols-12">
-                    {% for article in app.user.articles %}
-                        <div class="col-start-1 col-end-1 border-b">Title:</div>
-                        <div class="col-span-11 border-b">{{ article.title }}</div>
-{#                        <div class="col-span-11 border-b">{{ article.createdat|date("m/d/Y") }}</div>#}
-                    {% endfor %}
-                    </div>
-                </section>
-                <section class="p-9">
-                    <div class="text-xl my-5">
-                        Last Comments :
-                    </div>
-                    <div class="grid grid-cols-12">
-                        {% for comment in app.user.comments %}
-                            <div class="col-start-1 col-end-2 border-b px-2">{{ comment.createdat|date("m/d/Y") }}</div>
-                            <div class="col-span-8 border-b">{{ comment.content|slice(0, 75) ~ '...' }}</div>
-                            <div class="col-start-10 col-span-2 border-b">{{ comment.articles.title|slice(0, 20) ~ '...' }}</div>
-                        {% endfor %}
-                    </div>
-                </section>
+    <section>
+        <div class="grid grid-cols-3">
+            <div>
+                {% if ( app.user.image == '') %}
+                    <img class="mx-auto rounded-full" src="/uploads/images/profile/avatar-150.png" alt="User Image"
+                         width="150px" height="150px">
+                {% else %}
+                    <img class="mx-auto rounded-full" src="/uploads/images/profile/{{ app.user.image }}"
+                         alt="User Image" width="150px" height="150px">
+                {% endif %}
+            </div>
+
+            <div class="col-span-2">
+                <div class="my-5">
+                    Alias : {{ app.user.alias }}
+                </div>
+                <div class="my-5">
+                    Email : {{ app.user.email }}
+                </div>
+                {# <div> #}
+                {# Member since : {{ app.user.created_at|date("m/d/Y") }} #}
+                {# </div> #}
+                <div class="my-5">
+                    <a href="{{ path('profile.edit') }}"
+                       class="group justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Edit profile
+                    </a>
+                </div>
+                <div class="my-5">
+                    <a href="{{ path('profile.change.password') }}"
+                       class="group justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Change Password
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="text-xl my-5">
+            Last Articles :
+        </div>
+        <div class="grid grid-cols-12">
+            {% for article in app.user.articles %}
+                <div class="col-start-1 col-end-1 border-b">Title:</div>
+                <div class="col-span-11 border-b">{{ article.title }}</div>
+                {# <div class="col-span-11 border-b">{{ article.createdat|date("m/d/Y") }}</div> #}
+            {% endfor %}
+        </div>
+    </section>
+    <section class="p-9">
+        <div class="text-xl my-5">
+            Last Comments :
+        </div>
+        <div class="grid grid-cols-12">
+            {% for comment in app.user.comments %}
+                <div class="col-start-1 col-end-2 border-b px-2">{{ comment.createdat|date("m/d/Y") }}</div>
+                <div class="col-span-8 border-b">{{ comment.content|slice(0, 75) ~ '...' }}</div>
+                <div class="col-start-10 col-span-2 border-b">{{ comment.articles.title|slice(0, 20) ~ '...' }}</div>
+            {% endfor %}
+        </div>
+    </section>
 {% endblock %}
 

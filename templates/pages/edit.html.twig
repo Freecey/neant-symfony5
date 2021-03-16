@@ -1,0 +1,62 @@
+{%  extends 'base.html.twig' %}
+
+{% block title 'Welcome to Neant.be'%}
+
+{% block prebody %}
+    {{ include ('parts/_prebody.html.twig') }}
+{% endblock %}
+
+{%  block body %}
+
+    <div class="container mx-auto my-5">
+{#        <h1 class="text-2xl text-center mb-6 text-white">Hello World</h1>#}
+        <p class="text-center w-4/6 mx-auto">Everything that's created comes out of silence. Your thoughts emerge from the nothingness of silence. Your words come out of this void. Your very essence emerged from emptiness. All creativity requires some stillness.</p>
+        <p class="text-right w-4/6 mx-auto"><small>Wayne Dyer</small></p>
+    </div>
+
+    <div class="container mx-auto text-3xl">
+        <h2 class="text-yellow-500 p-5 bg-gray-700">Last 5 Articles :</h2>
+            {% for article in articles %}
+                <div class="my-2 w-full lg:max-w-full lg:flex">
+                    <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url('{{ vich_uploader_asset(article,'imageFile') }}')" title="...">
+                    </div>
+                    <div class="rounded-b lg:rounded-b-none lg:rounded-r p-4 flex-1 flex flex-col  justify-between leading-normal bg-blue-900">
+                        <div class="mb-8">
+
+                            <div class="text-yellow-200 font-bold text-xl">
+                                <a href="{{ path('article.show', {id: article.id, slug: article.slug}) }}">
+                                {{ article.title }}
+                                </a>
+                            </div>
+{#                            <p class="text-sm text-gray-400 flex items-center mb-2">#}
+
+                            <p class="text-base text-white">{{ article.intro }}</p>
+                        </div>
+                        <div class="flex items-center">
+{#                            <img class="w-10 h-10 rounded-full mr-4" src="" alt="Avatar of Writer">#}
+                            <div class="text-sm grid grid-cols-12 w-full">
+                                <div class="col-start-1 col-end-9 text-gray-400 leading-none">
+
+                                    {% for cat in article.categories %}
+                                    <span class="mx-2 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 rounded-full text-gray-700 " style="background-color:{{cat.color}}">
+                                        {{cat.name}}
+                                    </span>
+                                    {% endfor %}
+
+
+{#                                {% dump(article.categories) %}#}
+
+                                    {{ article.createdAt|date("m/d/Y") }} - by
+                                    {{ article.users }}
+
+                                </div>
+                                <div class="col-end-13 col-span-4 text-right">
+                                    <a href="{{ path('article.show', {id: article.id, slug: article.slug}) }}" class="uppercase text-base text-gray-400 hover:text-gray-800">Read more 🢂</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {%  endfor %}
+    </div>
+{%  endblock %}

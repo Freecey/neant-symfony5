@@ -10,8 +10,7 @@
                     <img class="mx-auto rounded-full" src="/uploads/images/profile/avatar-150.png" alt="User Image"
                          width="150px" height="150px">
                 {% else %}
-                    <img class="mx-auto rounded-full" src="/uploads/images/profile/{{ app.user.image }}"
-                         alt="User Image" width="150px" height="150px">
+                    <img class="mx-auto rounded-full" src="{{ vich_uploader_asset(app.user,'imageFile') }}" alt="{{ app.user.image }}" width="150px" height="150px">
                 {% endif %}
             </div>
 
@@ -42,25 +41,25 @@
     </section>
     <section>
         <div class="text-xl my-5">
-            Last Articles :
+            Last 5 Articles :
         </div>
         <div class="grid grid-cols-12">
-            {% for article in app.user.articles %}
+            {% for article in app.user.articles|reverse|slice(0, 5) %}
                 <div class="col-start-1 col-end-1 border-b">Title:</div>
                 <div class="col-span-11 border-b">{{ article.title }}</div>
                 {# <div class="col-span-11 border-b">{{ article.createdat|date("m/d/Y") }}</div> #}
             {% endfor %}
         </div>
     </section>
-    <section class="p-9">
+    <section>
         <div class="text-xl my-5">
-            Last Comments :
+            Last 5 Comments :
         </div>
         <div class="grid grid-cols-12">
-            {% for comment in app.user.comments %}
-                <div class="col-start-1 col-end-2 border-b px-2">{{ comment.createdat|date("m/d/Y") }}</div>
-                <div class="col-span-8 border-b">{{ comment.content|slice(0, 75) ~ '...' }}</div>
-                <div class="col-start-10 col-span-2 border-b">{{ comment.articles.title|slice(0, 20) ~ '...' }}</div>
+            {% for comment in app.user.comments|reverse|slice(0, 5) %}
+                <div class="col-start-1 col-span-2 border-b px-2">{{ comment.createdat|date("m/d/Y") }}</div>
+                <div class="col-span-6 border-b">{{ comment.content|slice(0, 75) ~ '...' }}</div>
+                <div class="col-start-9 col-span-3 border-b">{{ comment.articles.title|slice(0, 20) ~ '...' }}</div>
             {% endfor %}
         </div>
     </section>

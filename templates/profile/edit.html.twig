@@ -5,7 +5,23 @@
 {% block profilemainsection %}
     <section class="p-9">
         <div>
-            {{ form(form) }}
+            {{ form_start(form) }}
+            <div>
+                {% if app.user.image %}
+                    <img class="mx-auto rounded-full" src="{{ vich_uploader_asset(app.user,'imageFile') }}" alt="{{ app.user.image }}" width="150px" height="150px">
+                {% endif %}
+                {{ form_row(form.imageFile) }}
+            </div>
+            <div>
+                {{ form_row(form.alias) }}
+            </div>
+            <div>
+                {{ form_row(form.email) }}
+            </div>
+            <div>
+                {{ form_row(form.Save) }}
+            </div>
+            {{ form_end(form) }}
         </div>
 
     </section>

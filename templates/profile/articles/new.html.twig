@@ -1,0 +1,13 @@
+{% extends 'baseprofile.html.twig' %}
+
+{#{% block title %}#}
+
+{% block profilemainsection %}
+
+    <div class="container mx-auto">
+        <h2 class="text-3xl my-4">New Article</h2>
+        {{ include ('profile/articles/_form.html.twig', {form: form, button: 'Create'}) }}
+
+    </div>
+
+{% endblock %}

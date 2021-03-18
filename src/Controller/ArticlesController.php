@@ -34,8 +34,11 @@ class ArticlesController extends AbstractController
 
     public function index(PaginatorInterface $paginator,Request $request) : Response
     {
-        $articles = $paginator->paginate($this->repository->findAll(),
-        $request->query->getInt('page', 1), 5
+        $articles = $paginator->paginate($this->repository->findBy(
+            array('isvalidated' => true),
+            array('id' => 'DESC'),
+        ),
+        $request->query->getInt('page', 1), 10
         );
         return $this->render('article/index.html.twig', [
             'current_menu' => 'articles',

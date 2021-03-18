@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -44,7 +45,8 @@ class ArticlesCrudController extends AbstractCrudController
             TextareaField::new('imageFile')->setFormType(VichImageType::class)->hideOnIndex(),
             AssociationField::new('Users'),
             AssociationField::new('categories'),
-            AssociationField::new('keywords')
+            AssociationField::new('keywords'),
+            Field::new('isvalidated')
         ];
     }
 }

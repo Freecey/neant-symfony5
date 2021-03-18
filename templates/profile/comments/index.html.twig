@@ -1,0 +1,31 @@
+{% extends 'baseprofile.html.twig' %}
+
+{% block title %}Your Comments{% endblock %}
+
+{% block profilemainsection %}
+    <section class="p-9">
+        <div class="text-xl my-5">
+            All Comments :
+        </div>
+        <div class="">
+            {% for comment in app.user.comments %}
+                <div class="my-3 border" id="{{ comment.id }}">
+                    <div class="p-4">
+                        <p class="mb-2"><span class="text-sm">{{ comment.createdAt|date("m/d/Y") }}</span>:
+                            <span class="font-bold">{{ comment.articles.title|slice(0, 50) ~ '...' }}</span>
+                            </p>
+                        <div>{{ comment.content|slice(0, 250) ~ '...' }}</div>
+                    </div>
+                </div>
+{#                <div class="col-start-1 col-end-2 border-b px-2">{{ comment.createdat|date("m/d/Y") }}</div>#}
+{#                <div class="col-span-8 border-b">{{ comment.content|slice(0, 75) ~ '...' }}</div>#}
+{#                <div class="col-start-10 col-span-2 border-b">{{ comment.articles.title|slice(0, 20) ~ '...' }}</div>#}
+{#                <div class="col-start-10 col-span-2 border-b">{{ comment.articles.users|slice(0, 20) ~ '...' }}</div>#}
+            {% endfor %}
+        </div>
+{#        <div class="pagination text-center">#}
+{#            {{ knp_pagination_render(app.user.comments, '/parts/_tailwindcss_pagination.html.twig') }}#}
+{#        </div>#}
+    </section>
+{% endblock %}
+

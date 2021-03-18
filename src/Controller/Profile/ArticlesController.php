@@ -46,7 +46,7 @@ class ArticlesController extends AbstractController
     {
         $user = $this->getUser();
         $articles = $paginator->paginate($this->repository->findBy(
-            array(),
+            array('Users' => $user),
             array('id' => 'DESC'),
             $limit = null,
         ),
@@ -66,8 +66,10 @@ class ArticlesController extends AbstractController
         $articles = new Articles();
         $form = $this->createForm(ArticlesType::class, $articles);
         $form->handleRequest($request);
+        $user = $this->getUser();
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $articles->setUsers($user);
             $this->em->persist($articles);
             $this->em->flush();
             $this->addFlash('success','Article Add Successfully');
@@ -88,6 +90,15 @@ class ArticlesController extends AbstractController
      */
     public function edit(Articles $articles, Request $request)
     {
+        $user = $this->getUser()->getId();
+        $userArticle = $articles->getUsers()->getId();
+//        dd($user);
+//        die();
+        if ($userArticle !== $user)
+        {
+            return $this->redirectToRoute('profile.articles.index');
+        }
+
         $form = $this->createForm(ArticlesType::class, $articles);
         $form->handleRequest($request);
 
@@ -111,6 +122,14 @@ class ArticlesController extends AbstractController
      */
     public function delete(Articles $articles, Request $request)
     {
+        $user = $this->getUser()->getId();
+        $userArticle = $articles->getUsers()->getId();
+//        dd($user);
+//        die();
+        if ($userArticle !== $user)
+        {
+            return $this->redirectToRoute('profile.articles.index');
+        }
         if ($this->isCsrfTokenValid('delete' . $articles->getId(), $request->get('_token'))){
               $this->em->remove($articles);
 //              $this->em->flush();

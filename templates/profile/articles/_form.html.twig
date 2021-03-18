@@ -1,5 +1,5 @@
 {{ form_start(form) }}
-<div class="grid grid-cols-3 gap-4">
+<div class="">
 {#    <div>#}
 {#        {{ form_row(form.title) }}#}
 {#    </div>#}
@@ -11,7 +11,7 @@
 {#    </div>#}
 {#</div>#}
 {#{{ form_row(form.intro) }}#}
-        {{ form_row(form.content) }}
+{#        {{ form_row(form.content) }}#}
             {{ form_widget(form) }}
 <button class="my-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">{{ button|default('Save') }}</button>
 {{ form_end(form) }}

@@ -38,7 +38,7 @@ class ArticlesController extends AbstractController
             array('isvalidated' => true),
             array('id' => 'DESC'),
         ),
-        $request->query->getInt('page', 1), 5
+        $request->query->getInt('page', 1), 10
         );
         return $this->render('article/index.html.twig', [
             'current_menu' => 'articles',

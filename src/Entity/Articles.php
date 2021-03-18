@@ -93,6 +93,11 @@ class Articles
      */
     private $intro;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isvalidated;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -295,6 +300,18 @@ class Articles
     public function setIntro(string $intro): self
     {
         $this->intro = $intro;
+
+        return $this;
+    }
+
+    public function getIsvalidated(): ?bool
+    {
+        return $this->isvalidated;
+    }
+
+    public function setIsvalidated(bool $isvalidated): self
+    {
+        $this->isvalidated = $isvalidated;
 
         return $this;
     }

@@ -35,7 +35,7 @@ class ArticlesController extends AbstractController
     public function index(PaginatorInterface $paginator,Request $request) : Response
     {
         $articles = $paginator->paginate($this->repository->findBy(
-            array(),
+            array('isvalidated' => true),
             array('id' => 'DESC'),
         ),
         $request->query->getInt('page', 1), 5

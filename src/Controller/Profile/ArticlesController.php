@@ -70,9 +70,10 @@ class ArticlesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $articles->setUsers($user);
+            $articles->setIsvalidated(false);
             $this->em->persist($articles);
             $this->em->flush();
-            $this->addFlash('success','Article Add Successfully');
+            $this->addFlash('success','Article successfully added, but it must be validated by the site manager before it is visible to others.');
             return $this->redirectToRoute('profile.articles.index');
         }
 

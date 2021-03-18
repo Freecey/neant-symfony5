@@ -19,7 +19,7 @@ class HomeController extends AbstractController
     public function index(ArticlesRepository $repository): Response
     {
         $articles = $repository->findBy(
-            array(),
+            array('isvalidated' => true),
             array('id' => 'DESC'),
             $limit = 5,
         );

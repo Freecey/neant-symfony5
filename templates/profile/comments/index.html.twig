@@ -1,27 +1,70 @@
 {% extends 'baseprofile.html.twig' %}
 
-{% block title %}Your Comments{% endblock %}
+{% block title %}Profile: Manage Your Comments{% endblock %}
 
 {% block profilemainsection %}
     <section class="p-9">
-        <div class="text-xl my-5">
-            All Comments :
-        </div>
-        <div class="">
+        <h1 class="text-3xl my-5 text-center">Manage Your Comments</h1>
+{#        {% for message in app.flashes('success') %}#}
+{#            <div class="bg-green-100 border border-green-500 text-green-900 px-4 py-3 rounded relative" role="alert">#}
+{#                {{ message }}#}
+{#            </div>#}
+{#        {% endfor %}#}
+        <table class="table-fixed w-full my-5">
+            <thead>
+            <tr class="bg-blue-900">
+                <th class="w-1/6 border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">Date</th>
+                <th class="w-4/6 border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">Title</th>
+                <th class="w-1/6 border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">Action</th>
+            </tr>
+            </thead>
+            <tbody>
             {% for comment in comments %}
-                <div class="my-3 border" id="{{ comment.id }}">
-                    <div class="p-4">
-                        <p class="mb-2"><span class="text-sm">{{ comment.createdAt|date("m/d/Y") }}</span>:
-                            <span class="font-bold">{{ comment.articles.title|slice(0, 50) ~ '...' }}</span>
-                            </p>
+                <tr>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium text-center">{{ comment.createdat|date("m/d/Y") }}</td>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">
+                        <div class="mb-2"><small>On Article :</small>
+                            <span class="font-bold">{{ comment.articles.title|slice(0, 50) ~ '...' }}</span></div>
                         <div>{{ comment.content|slice(0, 250) ~ '...' }}</div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
+
+                    </td>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium text-center">
+                        <a href="" class="mx-1 my-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Edit</a>
+                        <form method="post" action="" class="inline-block" onsubmit="return confirm('Confirm Delete action ?')">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ comment.id) }}">
+                            <button class="mx-1 my-2 bg-red-500 hover:bg-red-900 text-white font-bold py-1 px-4 rounded-full">Delete</button>
+
+                        </form>
+                    </td>
+                </tr>
+            {%  endfor %}
+            </tbody>
+        </table>
         <div class="pagination text-center">
             {{ knp_pagination_render(comments, '/parts/_tailwindcss_pagination.html.twig') }}
         </div>
     </section>
+
+{#    <section class="p-9">#}
+{#        <div class="text-xl my-5">#}
+{#            All Comments :#}
+{#        </div>#}
+{#        <div class="">#}
+{#            {% for comment in comments %}#}
+{#                <div class="my-3 border" id="{{ comment.id }}">#}
+{#                    <div class="p-4">#}
+{#                        <p class="mb-2"><span class="text-sm">{{ comment.createdAt|date("m/d/Y") }}</span>:#}
+{#                            <span class="font-bold">{{ comment.articles.title|slice(0, 50) ~ '...' }}</span>#}
+{#                            </p>#}
+{#                        <div>{{ comment.content|slice(0, 250) ~ '...' }}</div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#        <div class="pagination text-center">#}
+{#            {{ knp_pagination_render(comments, '/parts/_tailwindcss_pagination.html.twig') }}#}
+{#        </div>#}
+{#    </section>#}
 {% endblock %}
 

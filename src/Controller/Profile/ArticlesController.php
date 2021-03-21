@@ -133,9 +133,10 @@ class ArticlesController extends AbstractController
         }
         if ($this->isCsrfTokenValid('delete' . $articles->getId(), $request->get('_token'))){
               $this->em->remove($articles);
-//              $this->em->flush();
+              $this->em->flush();
             $this->addFlash('success','Article Deleted Successfully');
-            return new Response('Deleted');
+            return $this->redirectToRoute('profile.articles.index');
+//            return new Response('Deleted');
         }
         return $this->redirectToRoute('profile.articles.index');
     }

@@ -1,0 +1,16 @@
+{% extends 'baseprofile.html.twig' %}
+
+{#{% block title %}#}
+
+{% block profilemainsection %}
+
+    <div class="container mx-auto">
+        <h2 class="text-3xl my-4">Edit Comment</h2>
+        {{ form_start(form) }}
+        <div class="">
+            {{ form_widget(form) }}
+        {{ form_end(form) }}
+        </div>
+    </div>
+
+{% endblock %}

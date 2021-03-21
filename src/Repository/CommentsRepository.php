@@ -20,20 +20,17 @@ class CommentsRepository extends ServiceEntityRepository
     }
 
 
-    /**
-     * @param $value
-     * @return Comments[] Returns an array of Comments objects
-     */
-    public function findByUser($value)
-    {
-        return $this->createQueryBuilder('c')
-//            ->andWhere('c.User = :val')
-//            ->setParameter('val', $value)
-            ->orderBy('c.id', 'DESC')
-            ->getQuery()
-            ->getResult()
-        ;
-    }
+//    /**
+//     * @param $value
+//     */
+//    public function findByUser($value)
+//    {
+//        return $this->createQueryBuilder('c')
+//            ->join('c.User', 'u')
+//            ->addSelect('c')
+//            ->where('c.id = :id')
+//        ;
+//    }
 
     // /**
     //  * @return Comments[] Returns an array of Comments objects

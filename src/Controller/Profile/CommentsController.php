@@ -36,7 +36,13 @@ class CommentsController extends AbstractController
     public function index(PaginatorInterface $paginator,Request $request) : Response
     {
         $user = $this->getUser();
-        $comments = $paginator->paginate($this->repository->findByUser($user),
+//        dd($user);
+        $comments = $paginator->paginate($user->getComments(),
+//            array(),
+//            array('id' => 'DESC'),
+//            $limit = 1,
+//            5,
+//        ),
             $request->query->getInt('page', 1), 10
         );
         return $this->render('profile/comments/index.html.twig', [

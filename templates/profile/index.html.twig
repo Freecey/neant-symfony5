@@ -10,7 +10,7 @@
                     <img class="mx-auto rounded-full" src="/uploads/images/profile/avatar-150.png" alt="User Image"
                          width="150px" height="150px">
                 {% else %}
-                    <img class="mx-auto rounded-full" src="{{ vich_uploader_asset(app.user,'imageFile') }}" alt="{{ app.user.image }}" width="150px" height="150px">
+                    <img class="mx-auto rounded-full" src="{{ vich_uploader_asset(app.user,'imageFile')| imagine_filter('profile150') }}" alt="{{ app.user.image }}" width="150px" height="150px">
                 {% endif %}
             </div>
 

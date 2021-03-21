@@ -21,9 +21,9 @@ class CommentsType extends AbstractType
 //            ->add('created_at')
 //            ->add('articles')
 //            ->add('User')
-            ->add('Send', SubmitType::class, [
+            ->add('Save', SubmitType::class, [
                 'attr' => [
-                    'class' => "group relative flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"]
+                    'class' => "my-2 group relative flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"]
             ])
         ;
     }

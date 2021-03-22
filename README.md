@@ -11,7 +11,7 @@ Lightweight and easy-to-use Blog solution for PHP using Symfony 5.2 framework & 
 * MariaDB 10.3.25
 * composer 2.0 or higher;
 * NPM 7.6.3
-* and the [usual Symfony application requirements](http://symfony.com/doc/current/reference/requirements.html).
+* and the [usual Symfony application requirements](https://symfony.com/doc/current/setup.html#technical-requirements).
 
 ## Quickstart - Installation
 Download and install the blog application using Git, Composer and NPM:

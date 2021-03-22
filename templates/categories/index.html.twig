@@ -1,0 +1,42 @@
+{%  extends 'base.html.twig' %}
+
+{% block title 'Categories' %}
+
+{% block prebody %}
+    {{ include ('parts/_prebody.html.twig') }}
+{% endblock %}
+
+{%  block body %}
+    <div class="container mx-auto">
+        <h1 class="text-2xl text-center my-3">All Categories</h1>
+    </div>
+{#    {% dump($categories) %}#}
+    <div class="pagination text-center">
+        {{ knp_pagination_render(categories, '/parts/_tailwindcss_pagination.html.twig') }}
+    </div>
+    <div class="container mx-auto text-3xl grid lg:grid-cols-2 md:grid-cols-1 lg:gap-4 md:gap-0">
+        {% for category in categories %}
+            {% if category.articles|length > 0 %}
+            <div class="my-2 w-full lg:max-w-full lg:flex">
+                <div class="w-full bg-gray-700 rounded-md shadow-md overflow-hidden md:max-w-2xl">
+                    <div class="md:flex">
+{#                        <div class="md:flex-shrink-0">#}
+{#                            <img class="h-48 w-full object-cover md:w-48" src="image.jpg" alt="Future Category {{ category.name }} image">#}
+{#                        </div>#}
+                        <div class="p-8">
+                            <div class="uppercase tracking-wide text-sm text-yellow-200 font-semibold text-2xl"><a href="{{ path('category.show', {slug: category.slug}) }}" class="hover:underline">{{ category.name }}</a><small> ({{ category.articles|length }})</small></div>
+                            {% for article in category.articles|reverse|slice(0, 5) %}
+                            <p class="mt-2 text-gray-200 text-base">- <a href="{{ path('article.show', {id: article.id, slug: article.slug}) }}">{{ article.title }}</a></p>
+                            {%  endfor %}
+                            {% if category.articles|length > 5 %} <p class="mt-2 text-gray-200 text-base ml-3"> . . .</p> {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        {%  endfor %}
+    </div>
+    <div class="pagination text-center">
+        {{ knp_pagination_render(categories, '/parts/_tailwindcss_pagination.html.twig') }}
+    </div>
+{%  endblock %}

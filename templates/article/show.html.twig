@@ -18,11 +18,12 @@
                     {% endfor %}
             </div>
             <div class="mx-4 col-end-13 col-span-6 text-right text-gray-400">
-                by {{ article.users }} --
+                <img class="rounded-full inline-block" src="{{ vich_uploader_asset(article.users,'imageFile')| imagine_filter('profile32') }}" alt="Pictures {{ article.users }}">
+                 by {{ article.users }} -
                 {{ article.createdAt|date("m/d/Y") }}
             </div>
         </div>
-        <div class="rounded-b lg:rounded-b-none lg:rounded-r p-4 flex-1 flex flex-col  justify-between leading-normal bg-gray-700">
+        <div class="rounded-b lg:rounded-b-none lg:rounded-r p-4 flex-1 flex flex-col  justify-between leading-normal bg-gray-700 ckeditor-content">
         {{ article.content|raw   }}
         </div>
         <h2 class="my-5 text-2xl text-yellow-500">Comments ({{ article.comments|length }})</h2>

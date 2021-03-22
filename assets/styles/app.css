@@ -6,3 +6,304 @@
 body {
     background-color: lightgray;
 }
+
+.ckeditor-content {
+    /* Begin bidirectionality settings (do not change) */
+}
+
+.ckeditor-content html,
+.ckeditor-content address,
+.ckeditor-content blockquote,
+.ckeditor-content body,
+.ckeditor-content dd,
+.ckeditor-content div,
+.ckeditor-content dl,
+.ckeditor-content dt,
+.ckeditor-content fieldset,
+.ckeditor-content form,
+.ckeditor-content frame,
+.ckeditor-content frameset,
+.ckeditor-content h1,
+.ckeditor-content h2,
+.ckeditor-content h3,
+.ckeditor-content h4,
+.ckeditor-content h5,
+.ckeditor-content h6,
+.ckeditor-content noframes,
+.ckeditor-content ol,
+.ckeditor-content p,
+.ckeditor-content ul,
+.ckeditor-content center,
+.ckeditor-content dir,
+.ckeditor-content hr,
+.ckeditor-content menu,
+.ckeditor-content pre {
+    display: block;
+    unicode-bidi: embed;
+}
+
+.ckeditor-content li {
+    display: list-item;
+}
+
+.ckeditor-content head {
+    display: none;
+}
+
+.ckeditor-content table {
+    display: table;
+}
+
+.ckeditor-content tr {
+    display: table-row;
+}
+
+.ckeditor-content thead {
+    display: table-header-group;
+}
+
+.ckeditor-content tbody {
+    display: table-row-group;
+}
+
+.ckeditor-content tfoot {
+    display: table-footer-group;
+}
+
+.ckeditor-content col {
+    display: table-column;
+}
+
+.ckeditor-content colgroup {
+    display: table-column-group;
+}
+
+.ckeditor-content td,
+.ckeditor-content th {
+    display: table-cell;
+}
+
+.ckeditor-content caption {
+    display: table-caption;
+}
+
+.ckeditor-content th {
+    font-weight: bolder;
+    text-align: center;
+}
+
+.ckeditor-content caption {
+    text-align: center;
+}
+
+.ckeditor-content body {
+    margin: 8px;
+}
+
+.ckeditor-content h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+}
+
+.ckeditor-content h2 {
+    font-size: 1.5em;
+    margin: 0.75em 0;
+}
+
+.ckeditor-content h3 {
+    font-size: 1.17em;
+    margin: 0.83em 0;
+}
+
+.ckeditor-content h4,
+.ckeditor-content p,
+.ckeditor-content blockquote,
+.ckeditor-content ul,
+.ckeditor-content fieldset,
+.ckeditor-content form,
+.ckeditor-content ol,
+.ckeditor-content dl,
+.ckeditor-content dir,
+.ckeditor-content menu {
+    margin: 1.12em 0;
+}
+
+.ckeditor-content h5 {
+    font-size: 0.83em;
+    margin: 1.5em 0;
+}
+
+.ckeditor-content h6 {
+    font-size: 0.75em;
+    margin: 1.67em 0;
+}
+
+.ckeditor-content h1,
+.ckeditor-content h2,
+.ckeditor-content h3,
+.ckeditor-content h4,
+.ckeditor-content h5,
+.ckeditor-content h6,
+.ckeditor-content b,
+.ckeditor-content strong {
+    font-weight: bolder;
+}
+
+.ckeditor-content blockquote {
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.ckeditor-content i,
+.ckeditor-content cite,
+.ckeditor-content em,
+.ckeditor-content var,
+.ckeditor-content address {
+    font-style: italic;
+}
+
+.ckeditor-content pre,
+.ckeditor-content tt,
+.ckeditor-content code,
+.ckeditor-content kbd,
+.ckeditor-content samp {
+    font-family: monospace;
+}
+
+.ckeditor-content pre {
+    white-space: pre;
+}
+
+.ckeditor-content button,
+.ckeditor-content textarea,
+.ckeditor-content input,
+.ckeditor-content select {
+    display: inline-block;
+}
+
+.ckeditor-content big {
+    font-size: 1.17em;
+}
+
+.ckeditor-content small,
+.ckeditor-content sub,
+.ckeditor-content sup {
+    font-size: 0.83em;
+}
+
+.ckeditor-content sub {
+    vertical-align: sub;
+}
+
+.ckeditor-content sup {
+    vertical-align: super;
+}
+
+.ckeditor-content table {
+    border-spacing: 2px;
+}
+
+.ckeditor-content thead,
+.ckeditor-content tbody,
+.ckeditor-content tfoot {
+    vertical-align: middle;
+}
+
+.ckeditor-content td,
+.ckeditor-content th,
+.ckeditor-content tr {
+    vertical-align: inherit;
+}
+
+.ckeditor-content s,
+.ckeditor-content strike,
+.ckeditor-content del {
+    text-decoration: line-through;
+}
+
+.ckeditor-content hr {
+    border: 1px inset;
+}
+
+.ckeditor-content ol,
+.ckeditor-content ul,
+.ckeditor-content dir,
+.ckeditor-content menu,
+.ckeditor-content dd {
+    margin-left: 40px;
+}
+
+.ckeditor-content ol {
+    list-style-type: decimal;
+}
+
+.ckeditor-content ol ul,
+.ckeditor-content ul ol,
+.ckeditor-content ul ul,
+.ckeditor-content ol ol {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.ckeditor-content u,
+.ckeditor-content ins {
+    text-decoration: underline;
+}
+
+.ckeditor-content br:before {
+    content: "\A";
+    white-space: pre-line;
+}
+
+.ckeditor-content center {
+    text-align: center;
+}
+
+.ckeditor-content :link,
+.ckeditor-content :visited {
+    text-decoration: underline;
+}
+
+.ckeditor-content :focus {
+    outline: thin dotted invert;
+}
+
+.ckeditor-content BDO[DIR="ltr"] {
+    direction: ltr;
+    unicode-bidi: bidi-override;
+}
+
+.ckeditor-content BDO[DIR="rtl"] {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+}
+
+.ckeditor-content *[DIR="ltr"] {
+    direction: ltr;
+    unicode-bidi: embed;
+}
+
+.ckeditor-content *[DIR="rtl"] {
+    direction: rtl;
+    unicode-bidi: embed;
+}
+
+@media print {
+    .ckeditor-content h1 {
+        page-break-before: always;
+    }
+    .ckeditor-content h1,
+    .ckeditor-content h2,
+    .ckeditor-content h3,
+    .ckeditor-content h4,
+    .ckeditor-content h5,
+    .ckeditor-content h6 {
+        page-break-after: avoid;
+    }
+    .ckeditor-content ul,
+    .ckeditor-content ol,
+    .ckeditor-content dl {
+        page-break-before: avoid;
+    }
+}
+/*# sourceMappingURL=style.css.map */

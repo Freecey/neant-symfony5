@@ -45,7 +45,7 @@
 
 						<a href="{{ path('home') }}" class="{% if current_menu is defined and current_menu == 'home' %} {{ activeMenu }} {% else %} {{ inactiveMenu}} {% endif %}">Home</a>
 						<a href="{{ path('article.index') }}" class="{% if current_menu is defined and current_menu == 'articles' %} {{ activeMenu }} {% else %} {{ inactiveMenu}} {% endif %}">Articles</a>
-						<a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-md font-medium">Tutorials</a>
+						<a href="{{ path('categories.index') }}" class="{% if current_menu is defined and current_menu == 'categories' %} {{ activeMenu }} {% else %} {{ inactiveMenu}} {% endif %}">Categories</a>
 						{#                            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-md font-medium">Projects</a>#}
 						<a href="{{ path('about.index') }}" class="{% if current_menu is defined and current_menu == 'about' %} {{ activeMenu }} {% else %} {{ inactiveMenu}} {% endif %}">About</a>
 					</div>
@@ -102,7 +102,7 @@
 			<!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
 			<a href="{{ path('home') }}" class="{% if current_menu is defined and current_menu == 'home' %} {{ activeMenuMobile }} {% else %} {{ inactiveMenuMobile }} {% endif %}">Home</a>
 			<a href="{{ path('article.index') }}" class="{% if current_menu is defined and current_menu == 'articles' %} {{ activeMenuMobile }} {% else %} {{ inactiveMenuMobile }} {% endif %}">Articles</a>
-			<a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Tutorials</a>
+			<a href="{{ path('categories.index') }}" class="{% if current_menu is defined and current_menu == 'categories' %} {{ activeMenuMobile }} {% else %} {{ inactiveMenuMobile }} {% endif %}">Categories</a>
 			{#                <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Projects</a>#}
 			<a href="{{ path('about.index') }}" class="{% if current_menu is defined and current_menu == 'about' %} {{ activeMenuMobile }} {% else %} {{ inactiveMenuMobile }} {% endif %}">About</a>
 		</div>

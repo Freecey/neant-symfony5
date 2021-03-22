@@ -1,24 +1,27 @@
-# neant-symfony5 <br />Simple Symfony5 Blog Application
+# neant-symfony5 <br />Simple Symfony 5.2 Blog Application
 
 ## Description
-Lightweight and easy-to-use Blog solution for PHP using Symfony5 framework.
+Lightweight and easy-to-use Blog solution for PHP using Symfony 5.2 framework & Tailwind CSS 2.0.3.
 
 ## Live version
 [https://www.neant.be](https://www.neant.be)
 
 ## Requirements
 * PHP 8.0 or higher;
-* MariaDB
+* MariaDB 10.3.25
 * composer 2.0 or higher;
-* and the [usual Symfony application requirements](http://symfony.com/doc/current/reference/requirements.html).
+* NPM 7.6.3
+* and the [usual Symfony application requirements](https://symfony.com/doc/current/setup.html#technical-requirements).
 
 ## Quickstart - Installation
-Download and install the blog application using Git and Composer:
+Download and install the blog application using Git, Composer and NPM:
 
 ```bash
 $ git clone https://github.com/Freecey/neant-symfony5.git
 $ cd neant-symfony5/
 $ composer install
+$ npm install --force
+$ npm run build
 ```
 > **NOTE**
 >
@@ -39,8 +42,15 @@ There is no need to configure a virtual host in your web server to access the ap
 Just use the built-in web server:
 
 ```bash
-symfony-blog$ php bin/console server:run
+neant-symfony5$ php bin/console server:run
 ```
+
+Contributor
+----
+
+![alt text](docs/onepanda.jpg?raw=true "Cey Pictures" )
+
+* Cedric AUDRIT     [@freecey](https://github.com/freecey/)
 
 ___
 License

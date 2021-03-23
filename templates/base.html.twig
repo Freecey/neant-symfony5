@@ -68,6 +68,7 @@
 
     {{ include ('parts/_footer.html.twig') }}
     <script>
+        // BURGER MENU OPEN
         function navToggle() {
             var btn = document.getElementById('mobile-menuBtn');
             var nav = document.getElementById('mobile-menu');
@@ -76,6 +77,7 @@
             nav.classList.toggle('flex');
             nav.classList.toggle('hidden');
         }
+        // PROFILE MENU OPEN
         function ProfileToggle() {
             var btn = document.getElementById('user-menu');
             var nav = document.getElementById('menu-profile');
@@ -84,6 +86,19 @@
             nav.classList.toggle('block');
             nav.classList.toggle('hidden');
         }
+        // NAV BAR STICK TOP
+        var nav = document.getElementById('site-menu');
+        var header = document.getElementById('top');
+
+        window.addEventListener('scroll', function() {
+            if (window.scrollY >=400) { // adjust this value based on site structure and header image height
+                nav.classList.add('nav-sticky');
+                header.classList.add('pt-scroll');
+            } else {
+                nav.classList.remove('nav-sticky');
+                header.classList.remove('pt-scroll');
+            }
+        });
     </script>
     </body>
 </html>

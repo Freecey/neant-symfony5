@@ -7,6 +7,21 @@ body {
     background-color: lightgray;
 }
 
+/*@media (min-width: 577px) {*/
+/*    .pt-scroll {*/
+/*        padding-top: 51px;*/
+/*    }*/
+
+    .nav-sticky {
+        position: fixed!important;
+        min-width: 100%;
+        top: 0;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+        transition: all 1s ease-in;
+        z-index: 1;
+    }
+/*}*/
+
 .ckeditor-content {
     /* Begin bidirectionality settings (do not change) */
 }

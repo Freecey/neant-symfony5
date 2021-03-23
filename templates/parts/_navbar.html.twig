@@ -76,7 +76,7 @@
 						{#                        From: "transform opacity-100 scale-100"#}
 						{#                        To: "transform opacity-0 scale-95"#}
 						{#                    -->#}
-							<div class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" id="menu-profile" role="menu" aria-orientation="vertical" aria-labelledby="user-menu"> {#                        <a href="#" class="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100" role="menuitem">Your Profile</a>#}
+							<div class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" id="menu-profile" role="menu" aria-orientation="vertical" aria-labelledby="menu_user"> {#                        <a href="#" class="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100" role="menuitem">Your Profile</a>#}
 							{#                        <a href="#" class="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100" role="menuitem">Settings</a>#}
 								<a href="{{ path('profile') }}" class="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100" role="menuitem">Profile</a>
 								{% if is_granted('ROLE_ADMIN') %}
@@ -88,7 +88,7 @@
 					<!-- Profile dropdown END -->
 
 				{% else %}
-				<div role="menu" aria-orientation="horizontal" aria-labelledby="user-menu">
+				<div role="menu">
 					<a href="{{ path('app_register') }}" class="mx-2 text-gray-300 text-white bg-green-600 hover:bg-green-700 hover:text-white px-3 py-2 rounded-md text-md font-medium" role="menuitem">Register</a>
 					<a href="{{ path('app_login') }}" class="mx-2 text-gray-300 text-white bg-indigo-600 hover:bg-indigo-700 hover:text-white px-3 py-2 rounded-md text-md font-medium" role="menuitem">Login</a>
 				</div>

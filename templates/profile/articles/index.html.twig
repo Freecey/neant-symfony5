@@ -11,40 +11,26 @@
                 {{ message }}
             </div>
         {% endfor %}
-
+        <div class="text-right">
+            <a href="{{  path('profile.articles.new') }}" class="group justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">New Article</a>
+        </div>
         <table class="table-fixed w-full my-5">
             <thead>
             <tr class="bg-blue-900">
-                <th class="w-4/6 border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">Title</th>
                 <th class="w-1/6 border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">Date</th>
+                <th class="w-4/6 border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">Title</th>
                 <th class="w-1/6 border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">Action</th>
             </tr>
             </thead>
             <tbody>
             {% for article in articles %}
-                <tr>
-                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">{{ article.title }}</td>
-                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium text-center">{{ article.createdat|date("m/d/Y") }}</td>
-                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium text-center">
-                        <div>
-                            <a href="{{ path('profile.articles.edit', {id: article.id}) }}" class="my-2 group relative flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Edit</a>
-                        </div>
-                        <form method="post" action="{{ path('profile.articles.delete', {id: article.id}) }}" class="" onsubmit="return confirm('Confirm Delete action ?')">
-                            <input type="hidden" name="_method" value="DELETE">
-                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
-                            <button class="w-full my-2 group relative flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-500 hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Delete</button>
-                        </form>
-                    </td>
-                </tr>
+                {{ include('profile/parts/_articlestable.html.twig') }}
             {%  endfor %}
             </tbody>
         </table>
                         <div class="pagination text-center">
                                 {{ knp_pagination_render(articles, '/parts/_tailwindcss_pagination.html.twig') }}
                             </div>
-        <div class="text-right">
-            <a href="{{  path('profile.articles.new') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">New Article</a>
-        </div>
 {#        <div class="text-xl my-5">#}
 {#            All Articles :#}
 {#        </div>#}

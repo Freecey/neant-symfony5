@@ -18,7 +18,12 @@
                     {% endfor %}
             </div>
             <div class="mx-4 col-end-13 col-span-6 text-right text-gray-400">
-                <img class="rounded-full inline-block" src="{{ vich_uploader_asset(article.users,'imageFile')| imagine_filter('profile32') }}" alt="Pictures {{ article.users }}">
+                {% if ( article.users.image == '') %}
+                    <img class="mx-2 rounded-full inline-block" src="{{ '/uploads/images/profile/avatar-150.png'| imagine_filter('profile32') }}" alt="Pictures {{ article.users }}"
+                         width="32px" height="32px">
+                {% else %}
+                    <img class="mx-2 rounded-full inline-block" src="{{ vich_uploader_asset(article.users,'imageFile')| imagine_filter('profile32') }}" alt="Pictures {{ article.users }}" width="32px" height="32px">
+                {% endif %}
                  by {{ article.users }} -
                 {{ article.createdAt|date("m/d/Y") }}
             </div>

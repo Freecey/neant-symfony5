@@ -1,0 +1,42 @@
+<script src="/assets/js/jquery-3.6.0.min.js"></script>
+<script src="/assets/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.select2-cats').select2({
+            tags: true,
+            tokenSeparators: [',',';']
+        }).on('change', function (e){
+            let label = $(this).find("[data-select2-tag= true]");
+            if(label.length && $.inArray(label.val(), $(this).val() !== -1 )){
+                // console.log(label.val())
+                $.ajax({
+                    url: "/categories/add/ajax/"+label.val(),
+                    type: "POST"
+
+                }).done(function(data){
+                    // console.log(data)
+                    label.replaceWith(`<option selected value="${data.id}">${label.val()}</option>`)
+                })
+            }
+        });
+    });
+    $(document).ready(function() {
+        $('.select2-keyword').select2({
+            tags: true,
+            tokenSeparators: [',',';',' ']
+        }).on('change', function (e){
+            let label = $(this).find("[data-select2-tag= true]");
+            if(label.length && $.inArray(label.val(), $(this).val() !== -1 )){
+                // console.log(label.val())
+                $.ajax({
+                    url: "/keywords/add/ajax/"+label.val(),
+                    type: "POST"
+
+                }).done(function(data){
+                    // console.log(data)
+                    label.replaceWith(`<option selected value="${data.id}">${label.val()}</option>`)
+                })
+            }
+        });
+    });
+</script>

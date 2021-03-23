@@ -11,48 +11,7 @@
             {{ encore_entry_link_tags('app') }}
             {#{{ encore_entry_link_tags('app') }}#}
         {% endblock %}
-        <script type="text/javascript" src="/tarteaucitron/tarteaucitron.js"></script>
-        <script type="text/javascript">
-            tarteaucitron.init({
-                "privacyUrl": "", /* Privacy policy url */
-
-                "hashtag": "#tarteaucitron", /* Open the panel with this hashtag */
-                "cookieName": "tarteaucitron", /* Cookie name */
-
-                "orientation": "bottom", /* Banner position (top - bottom - middle) */
-
-                "showAlertSmall": false, /* Show the small banner on bottom right */
-                "cookieslist": false, /* Show the cookie list */
-
-                "closePopup": false, /* Show a close X on the banner */
-
-                "showIcon": false, /* Show cookie icon to manage cookies */
-                "iconPosition": "BottomRight", /* BottomRight, BottomLeft, TopRight and TopLeft */
-
-                "adblocker": false, /* Show a Warning if an adblocker is detected */
-
-                "DenyAllCta" : true, /* Show the deny all button */
-                "AcceptAllCta" : true, /* Show the accept all button when highPrivacy on */
-                "highPrivacy": true, /* HIGHLY RECOMMANDED Disable auto consent */
-
-                "handleBrowserDNTRequest": true, /* If Do Not Track == 1, disallow all */
-
-                "removeCredit": true, /* Remove credit link */
-                "moreInfoLink": true, /* Show more info link */
-
-                "useExternalCss": false, /* If false, the tarteaucitron.css file will be loaded */
-                "useExternalJs": false, /* If false, the tarteaucitron.js file will be loaded */
-
-                //"cookieDomain": ".my-multisite-domaine.fr", /* Shared cookie for multisite */
-
-                "readmoreLink": "", /* Change the default readmore link */
-
-                "mandatory": true, /* Show a message about mandatory cookies */
-            });
-            tarteaucitron.user.gtagUa = 'G-D2H1Y2XZLQ';
-            tarteaucitron.user.gtagMore = function () { /* add here your optionnal gtag() */ };
-            (tarteaucitron.job = tarteaucitron.job || []).push('gtag');
-        </script>
+        {{ include('parts/_tarteaucitronjs.html.twig') }}
         {% block javascripts %}
             {#{{ encore_entry_script_tags('app') }}#}
         {% endblock %}
@@ -62,20 +21,22 @@
     {{ include ('parts/_navbar.html.twig') }}
 
         {% block prebody %}{% endblock %}
-    <main id='content' class='flex-1 p-8 '>
+    <main id='content' class='flex-1 p-4'>
         {% block body %}{% endblock %}
     </main>
 
     {{ include ('parts/_footer.html.twig') }}
     <script>
+        // BURGER MENU OPEN
         function navToggle() {
             var btn = document.getElementById('mobile-menuBtn');
             var nav = document.getElementById('mobile-menu');
 
             btn.classList.toggle('open');
-            nav.classList.toggle('flex');
+            nav.classList.toggle('menu-burger');
             nav.classList.toggle('hidden');
         }
+        // PROFILE MENU OPEN
         function ProfileToggle() {
             var btn = document.getElementById('user-menu');
             var nav = document.getElementById('menu-profile');
@@ -84,6 +45,21 @@
             nav.classList.toggle('block');
             nav.classList.toggle('hidden');
         }
+        // NAV BAR STICK TOP
+        var nav = document.getElementById('site-menu');
+        var header = document.getElementById('top');
+
+        window.addEventListener('scroll', function() {
+            if (window.scrollY >=400) { // adjust this value based on site structure and header image height
+                nav.classList.add('nav-sticky');
+                nav.classList.add('bg-opacity-90');
+                header.classList.add('pt-scroll');
+            } else {
+                nav.classList.remove('nav-sticky');
+                nav.classList.remove('bg-opacity-90');
+                header.classList.remove('pt-scroll');
+            }
+        });
     </script>
     </body>
 </html>

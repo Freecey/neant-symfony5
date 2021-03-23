@@ -10,37 +10,7 @@
                 {{ message }}
             </div>
         {% endfor %}
-        <table class="table-fixed w-full my-5">
-            <thead>
-            <tr class="bg-blue-900">
-                <th class="w-1/6 border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">Date</th>
-                <th class="w-4/6 border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">Title</th>
-                <th class="w-1/6 border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for comment in comments %}
-                <tr>
-                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium text-center">{{ comment.createdat|date("m/d/Y") }}</td>
-                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">
-                        <div class="mb-2"><small>On Article :</small>
-                            <span class="font-bold">{{ comment.articles.title|slice(0, 50) ~ '...' }}</span></div>
-                        <div>{{ comment.content|slice(0, 250) ~ '...' }}</div>
-
-                    </td>
-                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium text-center">
-                        <a href="{{ path('profile.comments.edit', {id: comment.id}) }}" class="my-2 group relative flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Edit</a>
-                        <form method="post" action="{{ path('profile.comments.delete', {id: comment.id}) }}" class="" onsubmit="return confirm('Confirm Delete action ?')">
-                            <input type="hidden" name="_method" value="DELETE">
-                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ comment.id) }}">
-                            <button class="w-full my-2 group relative flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-500 hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Delete</button>
-
-                        </form>
-                    </td>
-                </tr>
-            {%  endfor %}
-            </tbody>
-        </table>
+{{ include('profile/parts/_commentstable.html.twig') }}
         <div class="pagination text-center">
             {{ knp_pagination_render(comments, '/parts/_tailwindcss_pagination.html.twig') }}
         </div>

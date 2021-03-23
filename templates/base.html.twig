@@ -11,8 +11,8 @@
             {{ encore_entry_link_tags('app') }}
             {#{{ encore_entry_link_tags('app') }}#}
         {% endblock %}
-        <script type="text/javascript" src="/tarteaucitron/tarteaucitron.js"></script>
-        <script type="text/javascript">
+        <script src="/tarteaucitron/tarteaucitron.js"></script>
+        <script>
             tarteaucitron.init({
                 "privacyUrl": "", /* Privacy policy url */
 
@@ -62,7 +62,7 @@
     {{ include ('parts/_navbar.html.twig') }}
 
         {% block prebody %}{% endblock %}
-    <main id='content' class='flex-1 p-8 '>
+    <main id='content' class='flex-1 p-4'>
         {% block body %}{% endblock %}
     </main>
 

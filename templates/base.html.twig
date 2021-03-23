@@ -74,7 +74,7 @@
             var nav = document.getElementById('mobile-menu');
 
             btn.classList.toggle('open');
-            nav.classList.toggle('flex');
+            nav.classList.toggle('menu-burger');
             nav.classList.toggle('hidden');
         }
         // PROFILE MENU OPEN
@@ -93,9 +93,11 @@
         window.addEventListener('scroll', function() {
             if (window.scrollY >=400) { // adjust this value based on site structure and header image height
                 nav.classList.add('nav-sticky');
+                nav.classList.add('bg-opacity-90');
                 header.classList.add('pt-scroll');
             } else {
                 nav.classList.remove('nav-sticky');
+                nav.classList.remove('bg-opacity-90');
                 header.classList.remove('pt-scroll');
             }
         });

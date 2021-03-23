@@ -20,6 +20,12 @@ body {
         transition: all 1s ease-in;
         z-index: 1;
     }
+
+    .menu-burger {
+        display: flex;
+        transition: all 1s ease-in;
+    }
+
 /*}*/
 
 .ckeditor-content {

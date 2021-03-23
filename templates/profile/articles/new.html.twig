@@ -2,6 +2,13 @@
 
 {#{% block title %}#}
 
+{% block stylesheets %}
+
+    <link href="/assets/css/select2.min.css" rel="stylesheet" />
+    {{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+
 {% block profilemainsection %}
 
     <div class="container mx-auto">
@@ -10,4 +17,9 @@
 
     </div>
 
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ include('profile/parts/_select2cat-key.html.twig') }}
 {% endblock %}

@@ -11,11 +11,13 @@
         <h1 class="my-5 text-3xl text-yellow-500">{{ article.title }}</h1>
         <div class="text-sm grid grid-cols-12 w-full my-5">
             <div class="col-start-1 col-end-7 text-gray-400 leading-none">
-                    {% for cat in article.categories %}
-                        <span class="mx-2 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 rounded-full text-gray-700" style="background-color:{{cat.color}}">
-                                        {{cat.name}}
+                {% for category in article.categories %}
+                    <a href="{{ path('category.show', {slug: category.slug}) }}">
+                                    <span class="mx-2 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 rounded-full text-gray-700 " style="background-color:{{category.color}}">
+                                        {{category.name}}
                                     </span>
-                    {% endfor %}
+                    </a>
+                {% endfor %}
             </div>
             <div class="mx-4 col-end-13 col-span-6 text-right text-gray-400">
                 {% if ( article.users.image == '') %}

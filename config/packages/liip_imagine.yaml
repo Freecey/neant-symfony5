@@ -43,3 +43,12 @@ liip_imagine:
                 thumbnail:
                     size: [ 640, 360 ]
                     mode: outbound
+        imagemydata:
+            quality: 85
+            format: png
+            filters:
+                upscale:
+                    min: [ 320, 150 ]
+                thumbnail:
+                    size: [ 320, 150 ]
+#                    mode: outbound

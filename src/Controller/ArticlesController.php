@@ -77,6 +77,7 @@ class ArticlesController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()){
             $comment->setArticles($article);
+            $comment->setActive('true');
             $comment->setCreatedAt(new \DateTime('now'));
 
             $doctrine = $this->getDoctrine()->getManager();

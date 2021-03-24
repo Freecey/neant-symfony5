@@ -9,8 +9,10 @@ fm_elfinder:
                 roots:
                     uploads:
                         driver: LocalFileSystem
-                        path: uploads/images/articles
+                        path: uploads/images/articles/
                         show_hidden: false
                         upload_allow: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif', 'image/webp']
                         upload_deny: ['all']
                         upload_max_size: 2M
+
+

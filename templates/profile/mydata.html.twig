@@ -1,0 +1,161 @@
+{% extends 'baseprofile.html.twig' %}
+
+{% block title %}
+    My Data
+{% endblock %}
+
+{% block profilemainsection %}
+{#    {{ dump(app.user) }}#}
+    <section>
+        <div class="grid grid-cols-2">
+            <div class="text-xl my-5 col-1">
+                User Info:
+            </div>
+            <div class="text-right my-auto">
+                <a href="{{ path('profile.mydata.pdf') }}"
+                   class="group justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Download in PDF
+                </a>
+            </div>
+        </div>
+            <table class="table-fixed w-full my-5">
+                <thead>
+                <tr class="bg-blue-900">
+                    <th class="w-1/6 border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium"></th>
+                    <th class="w-5/6 border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">User Info</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium text-center">ID</td>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">{{ app.user.id }}</td>
+                </tr>
+                <tr>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium text-center">Alias</td>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">{{ app.user.alias }}</td>
+                </tr>
+                <tr>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium text-center">Email</td>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">{{ app.user.email }}</td>
+                </tr>
+                <tr>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium text-center">Roles</td>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">{% for role in app.user.roles %} {{ role }},  {% endfor %}</td>
+                </tr>
+                <tr>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium text-center">Image</td>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium"><img class="mx-auto" src="{{ app.request.schemeAndHttpHost ~ app.request.baseUrl }}/{{ vich_uploader_asset(app.user,'imageFile') }}" width="320px" height="150px"></td>
+                </tr>
+                <tr>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium text-center">Agree Term</td>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">{% if app.user.agreeTerms == 1 %} True {% else %} False {% endif %}</td>
+                </tr>
+                <tr>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium text-center">Create Date</td>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">{{ app.user.createdat|date('Y-m-d H:i:s') }}</td>
+                </tr>
+                <tr>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium text-center">Update Date</td>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">{{ app.user.updatedat|date('Y-m-d H:i:s') }}</td>
+                </tr>
+                </tbody>
+            </table>
+    </section>
+
+
+
+    <section>
+        <div class="grid grid-cols-2">
+            <div class="text-xl my-5 col-1">
+                All Articles ({{ app.user.articles.count }}):
+            </div>
+        </div>
+        {% for article in app.user.articles|reverse %}
+        <table class="table-fixed w-full my-5">
+            <thead>
+            <tr class="bg-blue-900">
+                <th class="w-1/6 border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">{{ article.id }}</th>
+                <th class="w-5/6 border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">{{ article.title }}</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium text-center">Create Date</td>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">{{ article.createdat|date('Y-m-d H:i:s') }}</td>
+                </tr>
+                <tr>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium text-center">Update Date</td>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">{{ article.updatedat|date('Y-m-d H:i:s') }}</td>
+                </tr>
+                <tr>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium text-center">categories</td>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium"> {% for category in article.categories %} {{ category }}, {% endfor %}</td>
+                </tr>
+                <tr>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium text-center">keywords</td>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">{% for keyword in article.keywords %} {{ keyword }}, {% endfor %}</td>
+                </tr>
+                <tr>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium text-center">Validated</td>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium"> {% if article.isvalidated == 1 %} True {% else %} False {% endif %}</td>
+                </tr>
+                <tr>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium text-center">Image</td>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium"><img class="mx-auto" src="{{ vich_uploader_asset(article,'imageFile') }}" width="320px" height="150px"></td>
+                </tr>
+                <tr>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium text-center">intro</td>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">{{ article.intro }}</td>
+                </tr>
+                <tr>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium text-center">Content</td>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">{{ article.content|raw }}</td>
+                </tr>
+            </tbody>
+        </table>
+        {% endfor %}
+    </section>
+    <section class="my-5">
+        <div class="text-xl my-5">
+            All Comments ({{ app.user.comments.count }}):
+        </div>
+        {% for comment in app.user.comments|reverse %}
+        <table class="table-fixed w-full my-5">
+            <thead>
+            <tr class="bg-blue-900">
+                <th class="w-1/6 border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">ID</th>
+                <th class="w-5/6 border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium text-left">{{ comment.id }}</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium text-center">On Article</td>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">
+                        {{ comment.articles.id }}: {{ comment.articles.title }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium text-center">Create Date</td>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">
+                        {{ comment.createdat|date('Y-m-d H:i:s') }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium text-center">Active</td>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium"> {% if comment.active == 1 %} True {% else %} False {% endif %}</td>
+                </tr>
+                <tr>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium text-center">Content</td>
+                    <td class="border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium">
+                        {{ comment.content }}
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        {%  endfor %}
+    </section>
+
+{% endblock %}
+
+

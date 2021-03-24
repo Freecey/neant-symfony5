@@ -20,9 +20,9 @@
 
                     {% if ( article.users.image == '') %}
                         <img class="mx-2 rounded-full inline-block" src="{{ '/uploads/images/profile/avatar-150.png'| imagine_filter('profile32') }}" alt="User Image"
-                             width="32px" height="32px">
+                             width="32" height="32">
                     {% else %}
-                        <img class="mx-2 rounded-full inline-block" src="{{ vich_uploader_asset(article.users,'imageFile')| imagine_filter('profile32') }}" alt="Pictures {{ article.users }}" width="32px" height="32px">
+                        <img class="mx-2 rounded-full inline-block" src="{{ vich_uploader_asset(article.users,'imageFile')| imagine_filter('profile32') }}" alt="Pictures {{ article.users }}" width="32" height="32">
                     {% endif %}
                     by {{ article.users }}  -  {{ article.createdAt|date("m/d/Y") }}
 

@@ -17,9 +17,15 @@ class EditProfileType extends AbstractType
     {
         $builder
             ->add('imageFile', VichImageType::class, [
+                'label' => 'Image Profile',
+                'attr' => ['class' => 'group relative flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'],
+                'allow_delete' => true,
+                'delete_label' => 'Remove current image',
                 'required' => false,
                 'download_link' => false,
-                'image_uri' => false
+                'image_uri' => true,
+                'imagine_pattern' => 'profile150',
+                'asset_helper' => true,
             ])
             ->add('email', EmailType::class ,[
                 'attr' => [

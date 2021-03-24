@@ -35,3 +35,20 @@ liip_imagine:
                 thumbnail:
                     size: [ 192, 188 ]
                     mode: outbound
+        articlespreview:
+            quality: 85
+            filters:
+                upscale:
+                    min: [ 640, 360 ]
+                thumbnail:
+                    size: [ 640, 360 ]
+                    mode: outbound
+        imagemydata:
+            quality: 85
+            format: png
+            filters:
+                upscale:
+                    min: [ 320, 150 ]
+                thumbnail:
+                    size: [ 320, 150 ]
+#                    mode: outbound

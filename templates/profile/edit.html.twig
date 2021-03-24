@@ -2,23 +2,35 @@
 
 {% block title %}Your Profile{% endblock %}
 
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+    {#{{ encore_entry_link_tags('app') }}#}
+    <style>
+        .img-prof .vich-image a img {
+            display: inline;
+            border-radius: 9999px;
+        }
+    </style>
+{% endblock %}
+
+
 {% block profilemainsection %}
     <section class="p-9">
         <div>
             {{ form_start(form) }}
-            <div>
-                {% if app.user.image %}
-                    <img class="mx-auto rounded-full" src="{{ vich_uploader_asset(app.user,'imageFile') }}" alt="{{ app.user.image }}" width="150px" height="150px">
-                {% endif %}
+            <div class="img-prof">
+{#                {% if app.user.image %}#}
+{#                    <img class="mx-auto rounded-full" src="{{ vich_uploader_asset(app.user,'imageFile') }}" alt="{{ app.user.image }}" width="150px" height="150px">#}
+{#                {% endif %}#}
                 {{ form_row(form.imageFile) }}
             </div>
-            <div>
+            <div class="my-5">
                 {{ form_row(form.alias) }}
             </div>
-            <div>
+            <div class="my-5">
                 {{ form_row(form.email) }}
             </div>
-            <div>
+            <div  class="my-5">
                 {{ form_row(form.Save) }}
             </div>
             {{ form_end(form) }}

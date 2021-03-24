@@ -10,6 +10,7 @@ use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -34,12 +35,19 @@ class ArticlesType extends AbstractType
             ->add('content', CKEditorType::class)
 //            ->add('created_at')
 //            ->add('updated_at')
-//            ->add('imageFile', VichFileType::class)
             ->add('imageFile', VichImageType::class, [
-                'required' => false,
-                'download_link' => false,
-                'image_uri' => false
+                'required' => true,
+                'allow_delete' => false,
+//                'download_label' => '...',
+                'download_uri' => false,
+                'image_uri' => true,
+                'imagine_pattern' => 'articlespreview',
             ])
+//            ->add('imageFile', VichImageType::class, [
+//                'required' => false,
+//                'download_link' => false,
+//                'image_uri' => false
+//            ])
 //            ->add('Users')
             ->add('categories', EntityType::class, [
                 'class' => Categories::class,

@@ -35,13 +35,34 @@
         </div>
         <h2 class="my-5 text-2xl text-yellow-500">Comments ({{ article.comments|length }})</h2>
         {% for comment in article.comments %}
+            {% if app.user and app.user.id == comment.user.values[0].id %}
             <div class="my-3 border" id="{{ comment.id }}">
-                <div class="p-4">
-                    <p class="mb-2">Publish by <span class="font-bold">{{ comment.user.values[0].alias }}</span>
-                        <span class="text-sm">({{ comment.createdAt|date("m/d/Y") }})</span>:</p>
-                    <div>{{ comment.content }}</div>
+                <div class="p-4 lg:grid lg:grid-cols-12 md:grid-cols-1">
+                    <div class="lg:col-start-1 lg:col-end-12 ">
+                        <p class="mb-2">Publish by <span class="font-bold">{{ comment.user.values[0].alias }}</span>
+                            <span class="text-sm">({{ comment.createdAt|date("m/d/Y") }})</span>:</p>
+                        <div>{{ comment.content }}</div>
+                    </div>
+                    <div class="lg:col-start-12 lg:col-end-13 text-right">
+                        <a href="{{ path('profile.comments.edit', {id: comment.id}) }}" class="my-2 group relative  justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Edit</a>
+                        <form method="post" action="{{ path('profile.comments.delete', {id: comment.id}) }}" class="m-0 inline-block" onsubmit="return confirm('Confirm Delete action ?')">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ comment.id) }}">
+                            <button class=" my-2 group relative  justify-center py-2 px-4 border border-transparent font-medium rounded-md text-white bg-red-500 text-sm hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Delete</button>
+
+                        </form>
+                    </div>
                 </div>
             </div>
+            {% else %}
+                <div class="my-3 border" id="{{ comment.id }}">
+                    <div class="p-4">
+                        <p class="mb-2">Publish by <span class="font-bold">{{ comment.user.values[0].alias }}</span>
+                            <span class="text-sm">({{ comment.createdAt|date("m/d/Y") }})</span>:</p>
+                        <div>{{ comment.content }}</div>
+                    </div>
+                </div>
+            {% endif %}
         {% else %}
         <p>No comment at this time.</p>
         {% endfor %}

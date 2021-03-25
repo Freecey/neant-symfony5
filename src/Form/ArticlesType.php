@@ -22,6 +22,8 @@ class ArticlesType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+//        dd($options['option_var']);
+//        die();
         $builder
             ->add('title', TextType::class, [
                 'attr' => [
@@ -32,7 +34,16 @@ class ArticlesType extends AbstractType
                 'class' => "appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"]
             ])
 //            ->add('slug')
-            ->add('content', CKEditorType::class)
+            ->add('content', CKEditorType::class, array(
+                'config' => array(
+                    'filebrowserBrowseRoute' => 'elfinder',
+                    'filebrowserBrowseRouteParameters' => array(
+                        'instance' => 'default',
+                        'homeFolder' => $options['option_var']
+                    )
+                ),
+            ),
+            )
 //            ->add('created_at')
 //            ->add('updated_at')
             ->add('imageFile', VichImageType::class, [
@@ -87,6 +98,7 @@ class ArticlesType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Articles::class,
+            'option_var' => false,
         ]);
     }
 }

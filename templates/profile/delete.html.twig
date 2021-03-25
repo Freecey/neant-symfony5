@@ -9,6 +9,11 @@
         <div class="text-red-600 text-2xl text-center my-4">Danger zone</div>
         <div>You are not satisfied with the content of the site?</div>
         <div>Or do you want to delete all information associated with this account?</div>
+        <ul class="list-disc ml-6 my-4">
+            <li>All Articles will be deleted</li>
+            <li>All Comments< will be deleted</li>
+            <li>All User info will be deleted</li>
+        </ul>
         <div class="my-4">This action is definitive and irreversible, type "confirm" to confirm your action</div>
         <form method="post" action="{{ path('profile.delete') }}" class="inline-block" onsubmit="return confirm('Confirm Delete action ?')">
 {#            <input type="hidden" name="_method" value="DELETE">#}

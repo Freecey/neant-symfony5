@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class ProfileController extends AbstractController
 {
@@ -127,5 +128,51 @@ class ProfileController extends AbstractController
         $dompdf->stream("neant-be_myData__".date('Y-m-d_His').".pdf", [
             "Attachment" => true
         ]);
+    }
+
+    /**
+     * @Route ("/profile/delete", name="profile.delete")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
+    public function deleteProfile(Request $request)
+    {
+        $user = $this->getUser();
+//        $form = $this->createForm(EditProfileType::class, $user);
+//
+//        $form->handleRequest($request);
+
+
+            if($this->isCsrfTokenValid('delete' . $this->getUser()->getId(), $request->get('_token') ))
+            {
+                if($request->get('confirmation') == 'confirm') {
+                    $em = $this->getDoctrine()->getManager();
+                    if( count($user->getArticles()) > 0 ) {
+                        foreach ($user->getArticles() as $article) {
+                            $em->remove($article);
+                            $em->flush();
+                        }
+                        $this->addFlash('message','All Articles Deleted Successfully');
+                    };
+                    if( count($user->getComments()) > 0 ) {
+                        foreach ($user->getComments() as $comment) {
+                            $em->remove($comment);
+                            $em->flush();
+                        }
+                        $this->addFlash('message','All Comments Deleted Successfully');
+                    };
+
+                    $em->remove($user);
+                    $em->flush();
+                    $session = new Session();
+                    $session->invalidate();
+                    $this->addFlash('message','Account Deleted Successfully');
+                    return $this->redirectToRoute('home');
+                }else {
+                    $this->addFlash('error','type "confirm" to confirm your action');
+                }
+            }
+
+        return $this->render('profile/delete.html.twig');
     }
 }

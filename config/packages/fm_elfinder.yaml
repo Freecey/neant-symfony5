@@ -5,11 +5,13 @@ fm_elfinder:
             locale: en
             editor: ckeditor
             theme: smoothness
+            multi_home_folder: true
+            folder_separator: "|"
             connector:
                 roots:
                     uploads:
                         driver: LocalFileSystem
-                        path: uploads/images/articles/
+                        path: uploads/images/articles
                         show_hidden: false
                         upload_allow: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif', 'image/webp']
                         upload_deny: ['all']

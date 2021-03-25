@@ -1,0 +1,29 @@
+{% extends 'baseprofile.html.twig' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block profilemainsection %}
+    <div>
+        <div class="text-red-600 text-2xl text-center my-4">Danger zone</div>
+        <div>You are not satisfied with the content of the site?</div>
+        <div>Or do you want to delete all information associated with this account?</div>
+        <ul class="list-disc ml-6 my-4">
+            <li>All Articles will be deleted</li>
+            <li>All Comments will be deleted</li>
+            <li>All User info will be deleted</li>
+        </ul>
+        <div class="my-4">This action is definitive and irreversible, type "confirm" to confirm your action</div>
+        <form method="post" action="{{ path('profile.delete') }}" class="inline-block" onsubmit="return confirm('Confirm Delete action ?')">
+{#            <input type="hidden" name="_method" value="DELETE">#}
+            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ app.user.id) }}">
+            <input type="text" name="confirmation" class="my-4 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
+            <button class="group justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">Delete Account</button>
+
+        </form>
+    </div>
+{% endblock %}
+
+
+

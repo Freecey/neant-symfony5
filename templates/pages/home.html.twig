@@ -9,6 +9,11 @@
 {%  block body %}
 
     <div class="container mx-auto my-5">
+        {% for message in app.flashes('message') %}
+            <div class="bg-green-100 border border-green-500 text-green-900 px-9 py-3 rounded relative text-center" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
 {#        <h1 class="text-2xl text-center mb-6 text-white">Hello World</h1>#}
         <p class="text-center w-4/6 mx-auto">Everything that's created comes out of silence. Your thoughts emerge from the nothingness of silence. Your words come out of this void. Your very essence emerged from emptiness. All creativity requires some stillness.</p>
         <p class="text-right w-4/6 mx-auto"><small>Wayne Dyer</small></p>

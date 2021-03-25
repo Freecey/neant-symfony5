@@ -64,9 +64,12 @@ class ArticlesController extends AbstractController
     public function new(Request $request)
     {
         $articles = new Articles();
-        $form = $this->createForm(ArticlesType::class, $articles);
-        $form->handleRequest($request);
         $user = $this->getUser();
+        $userid = $user->getId();
+        $form = $this->createForm(ArticlesType::class, $articles, [
+            'option_var' => $userid,
+        ]);
+        $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $articles->setUsers($user);
@@ -100,7 +103,9 @@ class ArticlesController extends AbstractController
             return $this->redirectToRoute('profile.articles.index');
         }
 
-        $form = $this->createForm(ArticlesType::class, $articles);
+        $form = $this->createForm(ArticlesType::class, $articles, [
+            'option_var' => $user,
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

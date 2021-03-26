@@ -19,6 +19,27 @@ class CategoriesRepository extends ServiceEntityRepository
         parent::__construct($registry, Categories::class);
     }
 
+
+     /**
+      * @return \Doctrine\ORM\Query Returns an array of Categories objects
+      */
+
+    public function findCategoriesNotEmpty()
+    {
+        return $this->createQueryBuilder('c')
+//            ->leftJoin('c.articles', 'a')
+            ->select('c')
+            ->innerJoin('c.articles', 'a')
+            ->Where('COUNT(a) > 0') // NOT EMPTY
+//            ->andWhere("c.articles IS NOT NULL") // NOT NULL
+
+//            ->innerJoin('c.articles', 'files')
+//            ->addSelect('COUNT(files) as total')
+//                ->having('total > 0')
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Categories[] Returns an array of Categories objects
     //  */

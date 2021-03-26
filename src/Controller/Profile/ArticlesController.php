@@ -63,6 +63,9 @@ class ArticlesController extends AbstractController
      */
     public function new(Request $request)
     {
+//        $nextid = $this->repository->findNextId();
+//        dd($nextid);
+//        die();
         $articles = new Articles();
         $user = $this->getUser();
         $userid = $user->getId();

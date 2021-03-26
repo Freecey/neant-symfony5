@@ -6,6 +6,7 @@ use App\Entity\Articles;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
+use phpDocumentor\Reflection\Types\Integer;
 use phpDocumentor\Reflection\Types\This;
 
 /**
@@ -23,13 +24,28 @@ class ArticlesRepository extends ServiceEntityRepository
 
     /**
      * @return Query
-     *
      */
     public function findAllDescQuery(): Query
     {
         return $this->findAll()
             ->getQuery();
     }
+
+//    /**
+//     * @return Integer
+//     */
+//    public function findNextId(): Integer
+//    {
+//        $query = $this->getEntityManager()->createQuery("
+//            SELECT AUTO_INCREMENT
+//            FROM information_schema.TABLES
+//            WHERE TABLE_SCHEMA = 'neant-site'
+//            AND TABLE_NAME = 'articles';
+//        ");
+//
+//        return $query->getResult();
+//    }
+
 
     // /**
     //  * @return Articles[] Returns an array of Articles objects

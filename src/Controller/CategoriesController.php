@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\NotNull;
 
 class CategoriesController extends AbstractController
 {
@@ -29,13 +30,16 @@ class CategoriesController extends AbstractController
     #[Route('/categories', name: 'categories.index')]
     public function index(PaginatorInterface $paginator,Request $request): Response
     {
-        $categories = $paginator->paginate($this->repository->findBy(
+        $categories = $paginator->paginate($this->repository->
+//        findCategoriesNotEmpty(),
+        findBy(
             array(),
             array('name' => 'ASC'),
         ),
             $request->query->getInt('page', 1), 12
         );
-
+//        dd($categories);
+//        die();
         return $this->render('categories/index.html.twig', [
             'current_menu' => 'categories',
             'categories' => $categories

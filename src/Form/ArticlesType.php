@@ -38,7 +38,7 @@ class ArticlesType extends AbstractType
                 'config' => array(
                     'filebrowserBrowseRoute' => 'elfinder',
                     'filebrowserBrowseRouteParameters' => array(
-                        'instance' => 'default',
+                        'instance' => 'form',
                         'homeFolder' => $options['option_var']
                     )
                 ),
@@ -47,7 +47,7 @@ class ArticlesType extends AbstractType
 //            ->add('created_at')
 //            ->add('updated_at')
             ->add('imageFile', VichImageType::class, [
-                'required' => true,
+                'required' => false,
                 'allow_delete' => false,
 //                'download_label' => '...',
                 'download_uri' => false,

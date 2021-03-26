@@ -31,15 +31,15 @@ class CategoriesController extends AbstractController
     public function index(PaginatorInterface $paginator,Request $request): Response
     {
         $categories = $paginator->paginate($this->repository->
-        findCategoriesNotEmpty(),
-//        findBy(
-//            array(),
-//            array('name' => 'ASC'),
-//        ),
+//        findCategoriesNotEmpty(),
+        findBy(
+            array(),
+            array('name' => 'ASC'),
+        ),
             $request->query->getInt('page', 1), 12
         );
-        dd($categories);
-        die();
+//        dd($categories);
+//        die();
         return $this->render('categories/index.html.twig', [
             'current_menu' => 'categories',
             'categories' => $categories

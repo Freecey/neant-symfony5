@@ -4,7 +4,7 @@
 Lightweight and easy-to-use Blog solution for PHP using Symfony 5.2 framework & Tailwind CSS 2.0.3.
 
 ## Live version
-[https://www.neant.be](https://www.neant.be)
+[https://blog.neant.be](https://blog.neant.be)
 
 ## Requirements
 * PHP 8.0 or higher;
